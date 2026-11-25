@@ -1,7 +1,7 @@
 (() => {
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Huom: animaatiot ja video toimivat myös 'Vähennä liikettä' -asetuksella (asiakkaan toive).
 
   /* ---------- Kieli (FI / EN) ---------- */
   const store = {
@@ -44,12 +44,21 @@
   /* ---------- Hero-video ---------- */
   const heroVideo = $('#heroVideo');
   const heroSrc = heroVideo.dataset[window.innerWidth < 820 ? 'srcMobile' : 'src'];
-  if (reduce) {
-    heroVideo.poster = 'media/hero-end.jpg';
-  } else if (heroSrc) {
+  if (heroSrc) {
+    heroVideo.muted = true;
+    heroVideo.defaultMuted = true;
+    heroVideo.setAttribute('muted', '');
     heroVideo.src = heroSrc;
     heroVideo.classList.add('has-video');
-    const p = heroVideo.play(); if (p && p.catch) p.catch(() => {});
+    const tryPlay = () => { const p = heroVideo.play(); if (p && p.catch) p.catch(() => {}); };
+    tryPlay();
+    heroVideo.addEventListener('canplay', tryPlay, { once: true });
+    // Jos selain esti automaattisen toiston (esim. virransäästötila), käynnistä ensimmäisestä vuorovaikutuksesta
+    const kick = () => {
+      if (heroVideo.paused && !heroVideo.ended) tryPlay();
+      ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach(e => window.removeEventListener(e, kick));
+    };
+    ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach(e => window.addEventListener(e, kick, { passive: true }));
   }
 
   /* ---------- Laskurit ---------- */
@@ -58,12 +67,12 @@
     const dec = parseInt(el.dataset.decimals || '0', 10);
     const suffix = el.dataset.suffix || '';
     const fmt = v => v.toFixed(dec).replace('.', ',') + suffix;
-    if (reduce || !window.gsap) { el.textContent = fmt(target); return; }
+    if (!window.gsap) { el.textContent = fmt(target); return; }
     const o = { v: 0 };
     gsap.to(o, { v: target, duration: 2, ease: 'power3.out', onUpdate: () => (el.textContent = fmt(o.v)) });
   }
 
-  if (reduce || !window.gsap || !window.ScrollTrigger) {
+  if (!window.gsap || !window.ScrollTrigger) {
     $$('[data-count]').forEach(runCounter);
     return;
   }

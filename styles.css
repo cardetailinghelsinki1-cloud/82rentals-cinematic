@@ -390,7 +390,3 @@ h1, .h2 { position: relative; z-index: 0; }
   .footer__grid { grid-template-columns: 1fr; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-  .letterbox { display: none; }
-}
