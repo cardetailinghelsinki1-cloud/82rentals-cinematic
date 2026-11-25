@@ -6,5 +6,5 @@
 - Tekstit ovat sana sanalta nykyiseltä 82rentals.com-etusivulta. Älä muuta niitä ilman pyyntöä.
 - Varaus- ja alasivulinkit osoittavat nykyiseen 82rentals.com-sivustoon (varausjärjestelmä on siellä).
 - Julkaisu: push `main`-haaraan → Vercel julkaisee automaattisesti. Käyttäjä haluaa muutokset suoraan livenä.
-- Hero-video: lisää tiedosto `media/hero.mp4` ja `<source>` `#heroVideo`-elementtiin.
+- Hero-video: `media/hero.mp4` (1080p) ja `media/hero-720.mp4` (mobiili), Higgsfield Seedance 2.0, ei ääntä. Toistetaan kerran ja jäädään viimeiseen ruutuun.
 - Higgsfield-generoinneista kerrotaan aina kredit-arvio ja odotetaan käyttäjän vahvistusta.

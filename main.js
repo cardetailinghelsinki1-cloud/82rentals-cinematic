@@ -43,7 +43,14 @@
 
   /* ---------- Hero-video ---------- */
   const heroVideo = $('#heroVideo');
-  if (heroVideo.querySelector('source') || heroVideo.getAttribute('src')) heroVideo.classList.add('has-video');
+  const heroSrc = heroVideo.dataset[window.innerWidth < 820 ? 'srcMobile' : 'src'];
+  if (reduce) {
+    heroVideo.poster = 'media/hero-end.jpg';
+  } else if (heroSrc) {
+    heroVideo.src = heroSrc;
+    heroVideo.classList.add('has-video');
+    const p = heroVideo.play(); if (p && p.catch) p.catch(() => {});
+  }
 
   /* ---------- Laskurit ---------- */
   function runCounter(el) {

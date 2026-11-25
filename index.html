@@ -9,7 +9,7 @@
   <link rel="icon" href="media/logo.png" />
   <link rel="preload" href="fonts/archivo.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" as="image" href="media/hero-poster.jpg" />
+  <link rel="preload" as="image" href="media/hero-start.jpg" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -48,14 +48,17 @@
   <main>
     <!-- 1. HERO -->
     <section class="hero" id="top">
+      <div class="hero__clip">
       <div class="hero__media">
-        <!-- Higgsfield-video tulee tähän: lisää <source src="media/hero.mp4" type="video/mp4"> -->
-        <video class="hero__video" id="heroVideo" poster="media/hero-poster.jpg" muted playsinline loop autoplay preload="metadata"></video>
+        <!-- Higgsfield-video: toistetaan kerran ja jäädään viimeiseen (hero-)ruutuun -->
+        <video class="hero__video" id="heroVideo" poster="media/hero-start.jpg" muted playsinline autoplay preload="auto"
+          data-src="media/hero.mp4" data-src-mobile="media/hero-720.mp4"></video>
       </div>
       <div class="hero__shade" aria-hidden="true"></div>
       <div class="letterbox letterbox--top" aria-hidden="true"></div>
       <div class="letterbox letterbox--bottom" aria-hidden="true"></div>
       <span class="hero__num" aria-hidden="true">82</span>
+      </div>
 
       <div class="hero__inner">
         <div class="hero__copy">
