@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>82Rentals – Vesijettivuokraus Helsinki</title>
+  <meta name="description" content="82Rentals on helsinkiläinen vesijettivuokraamo Tervasaaren satamasta. Polttoaine, pelastusliivit ja perehdytys kuuluvat aina hintaan." />
+  <meta name="theme-color" content="#061a33" />
+  <link rel="icon" href="media/logo.png" />
+  <link rel="preload" href="fonts/archivo.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" as="image" href="media/hero-poster.jpg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Kausi-banneri -->
+  <div class="season-banner" data-i18n="banner">❄ Kausi 2026 on päättynyt — kiitos kesästä! Varaukset avautuvat taas keväällä 2027.</div>
+
+  <!-- Navigaatio -->
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="/" aria-label="82Rentals"><img src="media/logo.png" alt="82Rentals" width="56" height="56" /></a>
+    <nav class="nav__links" aria-label="Päävalikko">
+      <a href="https://www.82rentals.com/vesijettimme" data-i18n="nav.jet">Vesijettimme</a>
+      <a href="https://www.82rentals.com/hinnasto" data-i18n="nav.pricing">Hinnasto</a>
+      <a href="https://www.82rentals.com/meista" data-i18n="nav.about">Meistä</a>
+      <a href="https://www.82rentals.com/ukk" data-i18n="nav.faq">UKK</a>
+      <a href="https://www.82rentals.com/yhteystiedot" data-i18n="nav.contact">Yhteystiedot</a>
+    </nav>
+    <div class="nav__right">
+      <div class="lang" role="group" aria-label="Kieli">
+        <button type="button" data-lang="fi" class="is-active">FI</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <a class="btn btn--sm" href="https://www.82rentals.com/varaa"><span data-i18n="nav.book">Varaa</span> <span aria-hidden="true">→</span></a>
+      <button class="nav__burger" type="button" aria-label="Valikko" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="https://www.82rentals.com/vesijettimme" data-i18n="nav.jet">Vesijettimme</a>
+    <a href="https://www.82rentals.com/hinnasto" data-i18n="nav.pricing">Hinnasto</a>
+    <a href="https://www.82rentals.com/meista" data-i18n="nav.about">Meistä</a>
+    <a href="https://www.82rentals.com/ukk" data-i18n="nav.faq">UKK</a>
+    <a href="https://www.82rentals.com/yhteystiedot" data-i18n="nav.contact">Yhteystiedot</a>
+  </div>
+
+  <main>
+    <!-- 1. HERO -->
+    <section class="hero" id="top">
+      <div class="hero__media">
+        <!-- Higgsfield-video tulee tähän: lisää <source src="media/hero.mp4" type="video/mp4"> -->
+        <video class="hero__video" id="heroVideo" poster="media/hero-poster.jpg" muted playsinline loop autoplay preload="metadata"></video>
+      </div>
+      <div class="hero__shade" aria-hidden="true"></div>
+      <div class="letterbox letterbox--top" aria-hidden="true"></div>
+      <div class="letterbox letterbox--bottom" aria-hidden="true"></div>
+      <span class="hero__num" aria-hidden="true">82</span>
+
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <div class="hero__badges intro">
+            <span class="chip chip--glass">
+              <svg viewBox="0 0 24 24" class="ico"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              <span data-i18n="hero.place">Vesijettivuokraus Helsinki</span>
+              <span class="dot">•</span>
+              <span class="star">★</span> <span data-i18n="hero.rating">4,9 / 5</span>
+            </span>
+            <span class="chip chip--sky" data-i18n="hero.offer">Avajaisalennukset</span>
+          </div>
+          <h1 class="hero__title intro" data-i18n-html="hero.title">Koe kesän <span class="hl">paras päivä</span> vesillä.</h1>
+          <p class="hero__lead intro" data-i18n="hero.lead">82Rentals on helsinkiläinen vesijettivuokraamo Tervasaaren satamasta. Nauti lyhyestä kesästä aallonharjalla 82 km/h vauhdissa. Polttoaine, pelastusliivit ja perehdytys kuuluvat aina hintaan.</p>
+          <div class="intro">
+            <a class="btn btn--lg" href="https://www.82rentals.com/varaa"><span data-i18n="cta.book">Varaa nyt</span> <span aria-hidden="true">→</span></a>
+          </div>
+          <ul class="hero__bullets intro">
+            <li data-i18n="hero.b1">Lähtö Tervasaaren satamasta</li>
+            <li data-i18n="hero.b2">Ei ajokorttivaatimusta</li>
+            <li data-i18n="hero.b3">Ensikertalaisystävällinen</li>
+          </ul>
+        </div>
+
+        <aside class="offer intro" aria-label="Avajaistarjous">
+          <span class="offer__num" aria-hidden="true">82</span>
+          <p class="offer__eyebrow" data-i18n="offer.eyebrow">Avajaistarjous · 2h</p>
+          <h3 class="offer__title">Sea-Doo Spark Trixx 2UP</h3>
+          <p class="offer__price"><span data-i18n="offer.price">199 € / 2h</span> <s>259 €</s></p>
+          <ul class="offer__list">
+            <li data-i18n="offer.l1">Lähtö Tervasaaren satamasta</li>
+            <li data-i18n="offer.l2">1-2 hengelle, pelastusliivit ja polttoaine kuuluvat hintaan</li>
+            <li data-i18n="offer.l3">Lyhyt perehdytys ja eikun vain menoksi</li>
+          </ul>
+          <a class="btn btn--block" href="https://www.82rentals.com/varaa?duration=2h"><span data-i18n="offer.cta">Tarkista saatavuus</span> <span aria-hidden="true">→</span></a>
+        </aside>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true"><span></span></div>
+    </section>
+
+    <!-- 2. INFONAUHA -->
+    <section class="ticker" aria-label="Edut">
+      <div class="ticker__track" id="tickerTrack">
+        <ul class="ticker__list">
+          <li><svg viewBox="0 0 24 24" class="ico"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 15h4M15 10h2"/></svg><span data-i18n="tick.1">Ei ajokorttivaatimusta</span></li>
+          <li><svg viewBox="0 0 24 24" class="ico"><path d="M4 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16M3 21h12M14 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0V8l-3-3"/><path d="M7 8h4"/></svg><span data-i18n="tick.2">Polttoaine sisältyy hintaan</span></li>
+          <li><svg viewBox="0 0 24 24" class="ico"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="m5.6 5.6 3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"/></svg><span data-i18n="tick.3">Pelastusliivit mukana</span></li>
+          <li><svg viewBox="0 0 24 24" class="ico"><path d="m12 3 2.7 5.6 6.1.8-4.4 4.3 1 6.1L12 17l-5.4 2.8 1-6.1-4.4-4.3 6.1-.8Z"/></svg><span data-i18n="tick.4">Google arvostelut 4,9 / 5</span></li>
+          <li><svg viewBox="0 0 24 24" class="ico"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg><span data-i18n="tick.5">Lähtö Tervasaaren satamasta</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. SOME -->
+    <section class="social section" id="social">
+      <span class="ghost-num" aria-hidden="true">82</span>
+      <div class="wrap social__grid">
+        <div class="phone" id="phone">
+          <div class="phone__frame">
+            <div class="phone__notch"></div>
+            <video class="phone__video" src="media/social.mp4" poster="media/social-poster.jpg" muted playsinline loop autoplay preload="none"></video>
+            <div class="phone__ui">
+              <div class="phone__rail">
+                <span class="phone__avatar"><img src="media/logo.png" alt="" /></span>
+                <span class="phone__stat"><svg viewBox="0 0 24 24" class="ico ico--fill"><path d="M12 21s-7.5-4.6-9.5-9.3C1 8 3.4 4.5 7 4.5c2 0 3.4 1.1 5 3 1.6-1.9 3-3 5-3 3.6 0 6 3.5 4.5 7.2C19.5 16.4 12 21 12 21Z"/></svg>1.2k</span>
+                <span class="phone__stat"><svg viewBox="0 0 24 24" class="ico ico--fill"><path d="M12 3c5 0 9 3.6 9 8s-4 8-9 8c-1.2 0-2.3-.2-3.3-.5L4 20l1.3-3.7C3.8 14.9 3 13 3 11c0-4.4 4-8 9-8Z"/></svg>42</span>
+                <span class="phone__stat"><svg viewBox="0 0 24 24" class="ico ico--fill"><path d="M6 3h12v18l-6-4-6 4Z"/></svg>58</span>
+                <span class="phone__stat"><svg viewBox="0 0 24 24" class="ico ico--fill"><path d="m21 3-9 18-2-8-8-2Z"/></svg>14</span>
+                <span class="phone__disc"><img src="media/logo.png" alt="" /></span>
+              </div>
+              <div class="phone__meta">
+                <strong>@82rentals</strong>
+                <p>Linkki biossa varauksiin 🌊 #vesijetti #helsinki #seadoo</p>
+                <span class="phone__sound">♫ alkuperäinen ääni · 82Rentals</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="social__copy">
+          <span class="eyebrow reveal" data-i18n="social.eyebrow">Seuraa meitä</span>
+          <h2 class="h2 reveal" data-i18n-html="social.title">Me <span class="nw"><span class="hl">somessa</span>.</span></h2>
+          <p class="lead reveal" data-i18n="social.text">Älä missaa kesän kuumimpia arvontoja, vinkkejä ja päivityksiä seuraamalla meitä someissa. Pysy aina aallon harjalla!</p>
+          <div class="social__btns reveal">
+            <a class="pill" href="https://instagram.com/82rentals" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" class="ico"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" class="fill"/></svg>@82rentals</a>
+            <a class="pill" href="https://www.tiktok.com/@82rentals" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" class="ico"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5M14 3c.5 2.8 2.4 4.6 5 5"/></svg>@82rentals</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ARVOSTELUT -->
+    <section class="reviews section" id="reviews">
+      <div class="wrap">
+        <span class="eyebrow reveal" data-i18n="reviews.eyebrow">Arvostelut</span>
+        <h2 class="h2 reveal" data-i18n-html="reviews.title"><span class="hl">Asiakkaat kertovat.</span></h2>
+        <div class="reviews__widget reveal" aria-label="Google-arvostelut" id="reviewsWidget">
+          <script async defer src="https://cdn.trustindex.io/loader.js?142436872a95188bcc068c5bc4a"></script>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. TUTUSTU MEIHIN -->
+    <section class="team" id="team">
+      <div class="team__media" id="teamMedia">
+        <img src="media/founders.jpg" alt="" loading="lazy" />
+        <div class="team__shade" aria-hidden="true"></div>
+        <span class="team__num" aria-hidden="true">82</span>
+        <div class="wrap team__copy">
+          <span class="eyebrow eyebrow--light reveal" data-i18n="team.eyebrow">Tutustu meihin</span>
+          <h2 class="h2 h2--light reveal" data-i18n-html="team.title">Nuori porukka, johon voit <span class="nw"><span class="hl">luottaa</span>.</span></h2>
+          <p class="lead lead--light reveal" data-i18n="team.text">82Rentals Oy on kolmen helsinkiläisen kaverin perustama yritys. Pidämme laitteistomme huippukunnossa, vastaamme nopeasti ja hoidamme aina asiat sovitusti. Olemme itse vesillä viikoittain ja huollamme kalustoa säännöllisesti, jotta vesijetit ovat aina priimakunnossa.</p>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="stats" id="stats">
+          <div class="stat"><strong data-count="30" data-suffix="+">30+</strong><span data-i18n="stat.1">Tyytyväistä asiakasta</span></div>
+          <div class="stat"><strong class="sky" data-count="4.9" data-suffix="★" data-decimals="1">4,9★</strong><span data-i18n="stat.2">Keskiarvosana</span></div>
+          <div class="stat"><strong class="teal" data-count="100" data-suffix="%">100%</strong><span data-i18n="stat.3">Huolletut vesijetit</span></div>
+          <div class="stat"><strong data-count="60" data-suffix="s">60s</strong><span data-i18n="stat.4">Varaus valmis</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CTA -->
+    <section class="cta section">
+      <div class="wrap">
+        <div class="cta__box" id="ctaBox">
+          <span class="cta__num" aria-hidden="true">82</span>
+          <div>
+            <span class="eyebrow eyebrow--light" data-i18n="cta.eyebrow">Valmiina lähtemään</span>
+            <h2 class="h2 h2--light" data-i18n="cta.title">Valmiina vesille?</h2>
+            <p class="lead lead--light" data-i18n="cta.text">Varaa Sea-Doo Spark Trixx 2up 60 sekunnissa. Lähtö Tervasaaren satamasta.</p>
+          </div>
+          <a class="btn btn--lg" href="https://www.82rentals.com/varaa"><span data-i18n="cta.book">Varaa nyt</span> <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <span class="footer__num" aria-hidden="true">82</span>
+    <div class="wrap footer__grid">
+      <div>
+        <img src="media/logo.png" alt="82Rentals" width="72" height="72" loading="lazy" />
+        <p class="footer__tag" data-i18n="footer.tag">Paikallisten perustama vesijettivuokraamo Helsingistä.</p>
+        <div class="footer__icons">
+          <a href="https://instagram.com/82rentals" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" class="ico"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+          <a href="https://www.tiktok.com/@82rentals" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" class="ico"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5M14 3c.5 2.8 2.4 4.6 5 5"/></svg></a>
+          <a href="tel:+358401866664" aria-label="Puhelin"><svg viewBox="0 0 24 24" class="ico"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg></a>
+          <a href="mailto:asiakaspalvelu@82rentals.com" aria-label="Sähköposti"><svg viewBox="0 0 24 24" class="ico"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 data-i18n="footer.pages">Sivut</h4>
+        <ul>
+          <li><a href="https://www.82rentals.com/vesijettimme" data-i18n="nav.jet">Vesijettimme</a></li>
+          <li><a href="https://www.82rentals.com/hinnasto" data-i18n="nav.pricing">Hinnasto</a></li>
+          <li><a href="https://www.82rentals.com/meista" data-i18n="nav.about">Meistä</a></li>
+          <li><a href="https://www.82rentals.com/ukk" data-i18n="footer.faq">Usein kysytyt</a></li>
+          <li><a href="https://www.82rentals.com/varaa" data-i18n="nav.book">Varaa</a></li>
+          <li><a href="https://www.82rentals.com/sopimusehdot" data-i18n="footer.terms">Sopimusehdot</a></li>
+          <li><a href="https://www.82rentals.com/tietosuoja" data-i18n="footer.privacy">Tietosuojaseloste</a></li>
+          <li><a href="https://www.82rentals.com/evasteet" data-i18n="footer.cookies">Evästekäytäntö</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="nav.contact">Yhteystiedot</h4>
+        <ul class="footer__contact">
+          <li><svg viewBox="0 0 24 24" class="ico"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg><span data-i18n="footer.city">Helsinki, Suomi</span></li>
+          <li><svg viewBox="0 0 24 24" class="ico"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg><a href="tel:+358401866664">+358 40 186 6664</a></li>
+          <li><svg viewBox="0 0 24 24" class="ico"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:asiakaspalvelu@82rentals.com">asiakaspalvelu@82rentals.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap footer__bottom">
+      <span data-i18n="footer.copy">© 2026 82Rentals Oy. Kaikki oikeudet pidätetään.</span>
+      <span>Y-tunnus 3624385-6</span>
+    </div>
+  </footer>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="vendor/lenis.min.js"></script>
+  <script src="i18n.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
