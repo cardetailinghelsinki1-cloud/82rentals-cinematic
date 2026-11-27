@@ -88,14 +88,14 @@
     gsap.ticker.add(t => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
     $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
-      const t = $(a.getAttribute('href')); if (t) { e.preventDefault(); if (window.__heroFinish) window.__heroFinish(); lenis.scrollTo(t, { offset: t.id === 'jet' || t.id === 'top' ? 0 : -90 }); }
+      const t = $(a.getAttribute('href')); if (t) { e.preventDefault(); lenis.scrollTo(t, { offset: t.id === 'jet' || t.id === 'top' ? 0 : -90 }); }
     }));
   }
 
   /* ---------- 1. Hero: tarina käynnistyy ensimmäisestä skrollauksesta ja etenee itsestään loppuun ----------
-     Sivulle tultaessa näkyy videon 1. ruutu + otsikko. Pieni skrollaus alaspäin → sivu pysyy herossa,
-     video toistuu ja tekstivaiheet etenevät videon tahdissa. Lopussa video jää viimeiseen ruutuun ja
-     skrollaus vapautuu. "Ohita" ja navigaatiolinkit vievät suoraan loppuun. */
+     Sivulle tultaessa näkyy videon 1. ruutu + otsikko. Pieni skrollaus alaspäin → video toistuu ja
+     tekstivaiheet etenevät videon tahdissa loppuun asti ja jäävät viimeiseen ruutuun. Skrollausta ei
+     lukita: käyttäjä voi jatkaa sivulla vapaasti, ja tarina etenee taustalla loppuun. */
   const heroVideo = $('#heroVideo');
   const heroMobile = window.innerWidth < 820;
   if (heroMobile) { heroVideo.dataset.src = heroVideo.dataset.srcMobile; heroVideo.poster = heroVideo.dataset.posterMobile; }
@@ -124,39 +124,22 @@
     .fromTo('.beat--3 li', { x: 120, autoAlpha: 0, rotateY: -35 }, { x: 0, autoAlpha: 1, rotateY: 0, duration: 0.7, stagger: 0.55, ease: 'power2.out' }, 5.1)
     .to('.beat--3 li', { x: -80, autoAlpha: 0, duration: 0.6, stagger: 0.1 }, 7.3)
     .fromTo('.beat--4', { autoAlpha: 0, x: 160, rotateY: -38, scale: 0.9, transformPerspective: 1200 }, { autoAlpha: 1, x: 0, rotateY: 0, scale: 1, duration: 1.1, ease: 'power2.out' }, 7.9)
-    .to('.hero__shade', { opacity: 1, duration: 2 }, 8)
-    .to('.hero__skip', { autoAlpha: 0, duration: 0.4 }, 9.4);
+    .to('.hero__shade', { opacity: 1, duration: 2 }, 8);
 
   let state = 'idle'; // idle → playing → done
   const RATE = 1.15;
   const fallback = gsap.to(story, { progress: 1, duration: 15 / RATE, ease: 'none', paused: true });
   const keys = ['ArrowDown', 'PageDown', 'End', ' ', 'Spacebar'];
-  const block = e => {
-    if (state !== 'playing') return;
-    if (e.type === 'keydown' && !keys.includes(e.key)) return;
-    e.preventDefault();
-  };
-  window.addEventListener('wheel', block, { passive: false });
-  window.addEventListener('touchmove', block, { passive: false });
-  window.addEventListener('keydown', block);
-  const lock = on => {
-    document.documentElement.classList.toggle('hero-locked', on);
-    if (lenis) on ? lenis.stop() : lenis.start();
-  };
   const finish = () => {
     if (state === 'done') return;
     state = 'done';
     fallback.kill(); story.progress(1);
     if (heroVideo.duration) { heroVideo.pause(); heroVideo.currentTime = heroVideo.duration - 0.05; }
-    lock(false);
   };
-  window.__heroFinish = finish;
   const start = () => {
     if (state !== 'idle') return;
     state = 'playing';
     intro.progress(1);
-    if (lenis) lenis.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0);
-    lock(true);
     heroVideo.playbackRate = RATE;
     const p = heroVideo.play();
     if (p && p.catch) p.catch(() => fallback.play()); // jos toisto estetään, tekstit etenevät silti
@@ -167,18 +150,17 @@
     if (state === 'playing' && heroVideo.duration && !heroVideo.paused) story.progress(heroVideo.currentTime / heroVideo.duration);
   });
   fallback.eventCallback('onComplete', finish);
-  $('.hero__skip').addEventListener('click', finish);
 
   // Käynnistys: ensimmäinen eleen suunta alaspäin, kun ollaan sivun alussa
-  if (window.scrollY > window.innerHeight * 0.5) finish();
+  if (window.scrollY > window.innerHeight * 0.5) start();
   let ty = null;
-  window.addEventListener('wheel', e => { if (state === 'idle' && e.deltaY > 0 && window.scrollY < 40) { e.preventDefault(); start(); } }, { passive: false });
+  window.addEventListener('wheel', e => { if (state === 'idle' && e.deltaY > 0) start(); }, { passive: true });
   window.addEventListener('touchstart', e => { ty = e.touches[0].clientY; }, { passive: true });
   window.addEventListener('touchmove', e => {
-    if (state === 'idle' && ty !== null && ty - e.touches[0].clientY > 8 && window.scrollY < 40) { e.preventDefault(); start(); }
-  }, { passive: false });
-  window.addEventListener('keydown', e => { if (state === 'idle' && keys.includes(e.key) && window.scrollY < 40) { e.preventDefault(); start(); } });
-  window.addEventListener('scroll', () => { if (state === 'idle' && window.scrollY > 4 && window.scrollY < window.innerHeight * 0.5) start(); }, { passive: true });
+    if (state === 'idle' && ty !== null && ty - e.touches[0].clientY > 8) start();
+  }, { passive: true });
+  window.addEventListener('keydown', e => { if (state === 'idle' && keys.includes(e.key)) start(); });
+  window.addEventListener('scroll', () => { if (state === 'idle' && window.scrollY > 4) start(); }, { passive: true });
 
   /* ---------- Yleiset paljastukset (erä kerrallaan, kun elementti tulee näkyviin) ---------- */
   ScrollTrigger.config({ ignoreMobileResize: true });

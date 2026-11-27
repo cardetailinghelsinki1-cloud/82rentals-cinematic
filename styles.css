@@ -921,15 +921,3 @@ h1, h2, h3, h4, .h2, .h3 { font-optical-sizing: auto; }
 }
 @media (max-width: 820px) { .hero__shade--r { display: none; } }
 
-/* Hero: itsestään etenevä tarina */
-html.hero-locked body { touch-action: none; overscroll-behavior: none; }
-.hero__skip {
-  position: absolute; right: var(--gutter); bottom: calc(13vh + 4px); z-index: 7;
-  display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px;
-  background: rgba(4,20,39,.35); border: 1px solid rgba(255,255,255,.25); color: #fff; font-size: 13px; font-weight: 600; letter-spacing: .06em;
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-  opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s, background .3s;
-}
-html.hero-locked .hero__skip { opacity: 1; visibility: visible; }
-.hero__skip:hover { background: rgba(110,198,255,.3); }
-@media (max-width: 820px) { .hero__skip { bottom: auto; top: calc(var(--banner-h) + var(--nav-h) + 12px); } }
