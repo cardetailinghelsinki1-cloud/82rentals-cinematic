@@ -305,28 +305,15 @@
       <div class="social__pin">
       <span class="ghost-num" aria-hidden="true">82</span>
       <div class="wrap social__grid">
-        <div class="phone" id="phone">
+        <div class="phone phone--real" id="phone">
           <span class="ptag ptag--1" aria-hidden="true">#vesijetti</span>
           <span class="ptag ptag--2" aria-hidden="true">#helsinki</span>
           <span class="ptag ptag--3" aria-hidden="true">#seadoo</span>
-          <div class="phone__frame">
-            <div class="phone__back" aria-hidden="true"><span class="phone__cam"><i></i><i></i><i></i></span><img src="media/logo.png" alt="" /></div>
-            <div class="phone__notch"></div>
-            <video class="phone__video" src="media/social.mp4" poster="media/social-poster.jpg" muted playsinline loop autoplay preload="none"></video>
-            <div class="phone__ui">
-              <div class="phone__rail">
-                <span class="phone__avatar"><img src="media/logo.png" alt="" /></span>
-                <span class="phone__stat"><svg viewBox="0 0 24 24" class="ico ico--fill"><path d="M12 21s-7.5-4.6-9.5-9.3C1 8 3.4 4.5 7 4.5c2 0 3.4 1.1 5 3 1.6-1.9 3-3 5-3 3.6 0 6 3.5 4.5 7.2C19.5 16.4 12 21 12 21Z"/></svg>1.2k</span>
-                <span class="phone__stat"><svg viewBox="0 0 24 24" class="ico ico--fill"><path d="M12 3c5 0 9 3.6 9 8s-4 8-9 8c-1.2 0-2.3-.2-3.3-.5L4 20l1.3-3.7C3.8 14.9 3 13 3 11c0-4.4 4-8 9-8Z"/></svg>42</span>
-                <span class="phone__stat"><svg viewBox="0 0 24 24" class="ico ico--fill"><path d="M6 3h12v18l-6-4-6 4Z"/></svg>58</span>
-                <span class="phone__stat"><svg viewBox="0 0 24 24" class="ico ico--fill"><path d="m21 3-9 18-2-8-8-2Z"/></svg>14</span>
-                <span class="phone__disc"><img src="media/logo.png" alt="" /></span>
-              </div>
-              <div class="phone__meta">
-                <strong>@82rentals</strong>
-                <p>Linkki biossa varauksiin 🌊 #vesijetti #helsinki #seadoo</p>
-                <span class="phone__sound">♫ alkuperäinen ääni · 82Rentals</span>
-              </div>
+          <!-- Higgsfield: oikea iPhone pyörähtää skrollauksen tahdissa; lopuksi näytölle häivytetään oikea somevideo -->
+          <div class="phone3d">
+            <video class="phone3d__spin" muted playsinline preload="none" poster="media/phone-spin-poster.jpg" data-src="media/phone-spin.mp4" aria-hidden="true"></video>
+            <div class="phone3d__screen">
+              <video class="phone__video" src="media/social.mp4" poster="media/social-poster.jpg" muted playsinline loop preload="none" aria-label="82Rentalsin somevideo"></video>
             </div>
           </div>
         </div>

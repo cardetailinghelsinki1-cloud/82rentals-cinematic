@@ -252,19 +252,22 @@
     gsap.fromTo('.pricing__video', { scale: 1.15 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '#hinnasto', start: 'top bottom', end: 'bottom top', scrub: true } });
   }
 
-  /* ---------- 6. Some: puhelin pyörähtää ympäri ja tagit leijuvat esiin ---------- */
+  /* ---------- 6. Some: oikea iPhone pyörähtää (Higgsfield), lopuksi näytöllä pyörii oikea somevideo ---------- */
+  const pSpin = $('.phone3d__spin');
+  const setPhone = pSpin ? scrubVideo(pSpin, '#social') : () => {};
+  const phoneVideo = $('.phone__video');
+  const phoneP = { p: 0 };
   const st = gsap.timeline({
     defaults: { ease: 'none' },
     scrollTrigger: small
-      ? { trigger: '.phone', start: 'top 95%', end: 'bottom 30%', scrub: 1 }
-      : { trigger: '#social', pin: true, start: 'top top', end: '+=140%', scrub: 1, anticipatePin: 1 }
+      ? { trigger: '.phone', start: 'top 90%', end: 'bottom 25%', scrub: 0.6 }
+      : { trigger: '#social', pin: true, start: 'top top', end: '+=160%', scrub: 0.6, anticipatePin: 1 }
   });
-  st.fromTo('.phone__frame', { rotateY: -200, rotateX: 18, rotateZ: -10, scale: 0.72, y: 60 },
-      { rotateY: 0, rotateX: 0, rotateZ: 0, scale: 1, y: 0, duration: 1, ease: 'power2.out' }, 0)
-    .from('.ptag', { autoAlpha: 0, scale: 0.4, y: 40, stagger: 0.12, duration: 0.35, ease: 'back.out(2)' }, 0.55)
-    .to('.ptag--1', { y: -40, duration: 0.5 }, 0.9).to('.ptag--2', { y: 30, duration: 0.5 }, 0.9).to('.ptag--3', { y: -24, duration: 0.5 }, 0.9)
-    .to('.phone__frame', { rotateY: 8, rotateX: -4, duration: 0.5 }, 1);
-  const phoneVideo = $('.phone__video');
+  st.to(phoneP, { p: 1, duration: 1, onUpdate: () => setPhone(phoneP.p) }, 0)
+    .fromTo('.phone3d', { scale: 0.85, y: 40 }, { scale: 1, y: 0, duration: 1 }, 0)
+    .fromTo('.phone3d__screen', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.12 }, 0.95)
+    .from('.ptag', { autoAlpha: 0, scale: 0.4, y: 40, stagger: 0.1, duration: 0.25, ease: 'back.out(2)' }, 0.7)
+    .to('.ptag--1', { y: -40, duration: 0.3 }, 1).to('.ptag--2', { y: 30, duration: 0.3 }, 1).to('.ptag--3', { y: -24, duration: 0.3 }, 1);
   if (phoneVideo) ScrollTrigger.create({ trigger: '#social', start: 'top 60%', end: 'bottom top',
     onEnter: () => { phoneVideo.preload = 'auto'; const p = phoneVideo.play(); if (p && p.catch) p.catch(() => {}); },
     onLeave: () => phoneVideo.pause(), onEnterBack: () => { const p = phoneVideo.play(); if (p && p.catch) p.catch(() => {}); } });
