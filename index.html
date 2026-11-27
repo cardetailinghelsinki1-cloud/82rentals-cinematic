@@ -113,11 +113,12 @@
       </div>
     </section>
 
-    <!-- 3. LAITTEISTO: kiinnitetty näkymä, jossa vesijetti piirtyy, saa värinsä ja esittelee osansa -->
+    <!-- 3. LAITTEISTO: kiinnitetty näkymä, valo paljastaa jetin, kamera kiertää osat 01–04 ja jetti pyörähtää -->
     <section class="jet" id="jet" aria-labelledby="jetTitle">
       <div class="jet__pin">
         <div class="jet__bg" aria-hidden="true">
           <div class="jet__grid"></div>
+          <div class="jet__beam"></div>
           <div class="jet__spot"></div>
           <span class="jet__word">SPARK TRIXX</span>
         </div>
@@ -129,44 +130,14 @@
         </div>
 
         <div class="jet__stage">
-          <!-- Oma kuvitus: tyylitelty sivuprofiili 82Rentalsin vihreä–lime-väreissä -->
-          <svg class="jet__svg" viewBox="0 0 1000 400" role="img" aria-label="Sea-Doo Spark Trixx 2up -vesijetin piirros">
-            <defs>
-              <linearGradient id="gHull" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16202b"/><stop offset="1" stop-color="#05090f"/></linearGradient>
-              <linearGradient id="gDeck" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#159e7c"/><stop offset=".55" stop-color="#2fc3a6"/><stop offset="1" stop-color="#19a383"/></linearGradient>
-              <linearGradient id="gSeat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e4f75a"/><stop offset="1" stop-color="#b7cf1f"/></linearGradient>
-              <linearGradient id="gShine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
-              <clipPath id="cJet"><path d="M60 232 H300 C450 232 620 236 760 226 C860 219 930 206 965 196 C950 232 905 262 840 282 C720 316 520 326 330 322 C220 320 140 312 96 300 L82 268 Z M64 232 C70 214 90 206 120 206 H250 C270 206 280 196 300 192 H560 C600 190 640 160 690 150 C760 138 860 160 965 196 Z"/></clipPath>
-            </defs>
-            <!-- vesiviiva -->
-            <g class="jet__water">
-              <path class="jl" pathLength="1" d="M10 336 C200 324 400 348 600 338 S880 330 990 326"/>
-              <path class="jl jl--faint" pathLength="1" d="M60 356 C240 346 420 366 620 358 S860 352 960 350"/>
-            </g>
-            <g class="jet__body">
-              <g transform="translate(140 -40) scale(0.72 1.15)">
-              <path class="jp jf-hull" pathLength="1" d="M60 232 H300 C450 232 620 236 760 226 C860 219 930 206 965 196 C950 232 905 262 840 282 C720 316 520 326 330 322 C220 320 140 312 96 300 L82 268 Z"/>
-              <path class="jp jf-deck" pathLength="1" d="M64 232 C70 214 90 206 120 206 H250 C270 206 280 196 300 192 H560 C600 190 640 160 690 150 C760 138 860 160 965 196 C930 206 860 219 760 226 C620 236 450 232 300 232 H64 Z"/>
-              <path class="jp jf-seat" pathLength="1" d="M285 196 C285 172 300 160 330 160 H545 C575 160 592 172 592 192 V196 Z"/>
-              <path class="jp jf-accent" pathLength="1" d="M700 152 C760 142 840 160 932 189 L906 197 C830 178 760 170 700 176 Z"/>
-              <path class="jp jf-dark" pathLength="1" d="M96 286 L58 290 L58 304 L100 301 Z"/>
-              <path class="jp jf-dark" pathLength="1" d="M60 232 L36 236 L42 254 L84 258"/>
-              <path class="jp jl--line" pathLength="1" d="M110 262 C300 272 600 270 862 250"/>
-              <path class="jp jl--line" pathLength="1" d="M640 170 L664 98"/>
-              <path class="jp jl--line jl--bar" pathLength="1" d="M636 96 Q664 86 706 90"/>
-              <rect class="jet__shine" x="-200" y="120" width="180" height="230" fill="url(#gShine)" clip-path="url(#cJet)"/>
-              </g>
-              <text class="jet__decal" x="420" y="300">82</text>
-            </g>
-            <!-- kohdepisteet -->
-            <g class="hs" data-hs="0" transform="translate(618 73)"><circle r="22" class="hs__ring"/><circle r="7" class="hs__dot"/></g>
-            <g class="hs" data-hs="1" transform="translate(457 151)"><circle r="22" class="hs__ring"/><circle r="7" class="hs__dot"/></g>
-            <g class="hs" data-hs="2" transform="translate(500 284)"><circle r="22" class="hs__ring"/><circle r="7" class="hs__dot"/></g>
-            <g class="hs" data-hs="3" transform="translate(716 268)"><circle r="22" class="hs__ring"/><circle r="7" class="hs__dot"/></g>
-          </svg>
-          <!-- Higgsfield: studiokuva + 360°-pyörähdys, sidottu skrollaukseen -->
-          <div class="jet__real">
-            <video class="jet__spin" muted playsinline preload="none" poster="media/jet-spin-poster.jpg" data-src="media/jet-spin.mp4" aria-label="Sea-Doo Spark Trixx 2up studiovalossa"></video>
+          <!-- Higgsfield: 82Rentalsin oma Spark Trixx. Ruutu 0 = sivuprofiili, josta kamera zoomaa osiin; lopussa 360°-pyörähdys skrollauksen tahdissa -->
+          <div class="jet__frame">
+            <video class="jet__spin" muted playsinline preload="auto" poster="media/jet-spin-poster.jpg" data-src="media/jet-spin.mp4" aria-label="Sea-Doo Spark Trixx 2up studiovalossa"></video>
+            <div class="jet__flare" aria-hidden="true"></div>
+            <span class="hs" style="--x:57.4%;--y:20%" aria-hidden="true"><i class="hs__ring"></i><i class="hs__dot"></i></span>
+            <span class="hs" style="--x:45.3%;--y:32.5%" aria-hidden="true"><i class="hs__ring"></i><i class="hs__dot"></i></span>
+            <span class="hs" style="--x:37%;--y:43.5%" aria-hidden="true"><i class="hs__ring"></i><i class="hs__dot"></i></span>
+            <span class="hs" style="--x:72.5%;--y:48%" aria-hidden="true"><i class="hs__ring"></i><i class="hs__dot"></i></span>
           </div>
         </div>
 
@@ -199,44 +170,38 @@
       </div>
     </section>
 
-    <!-- 4. KALUSTO: ominaisuudet + oikea kuva Helsingistä -->
-    <section class="feats section" id="kalusto">
-      <div class="wrap">
-        <div class="feats__top">
-          <div>
-            <span class="eyebrow reveal" data-i18n="feats.eyebrow">Kalusto</span>
-            <h2 class="h2 reveal" data-i18n-html="feats.title">Vesijetin vuokraus <span class="hl">Helsingissä.</span></h2>
+    <!-- 4. KALUSTO: kiinnitetty vaakarulla, kortit liukuvat ohi syvyysvaikutelmalla -->
+    <section class="feats" id="kalusto">
+      <div class="feats__pin">
+        <div class="feats__bg" aria-hidden="true"><span class="feats__word">82 KM/H</span></div>
+        <div class="feats__head">
+          <span class="eyebrow eyebrow--light" data-i18n="feats.eyebrow">Kalusto</span>
+          <h2 class="h2 h2--light" data-i18n-html="feats.title">Vesijetin vuokraus <span class="hl">Helsingissä.</span></h2>
+          <p class="lead lead--light" data-i18n="feats.lead">Ensikertalaisystävällinen ja turvallinen vesijetti.</p>
+        </div>
+        <div class="feats__track" id="featsTrack">
+          <article class="fcard">
+            <div class="fcard__img"><img src="media/hero-end.jpg" alt="" loading="lazy" data-feat="1" /></div>
+            <div class="fcard__body"><span class="fcard__n">01</span><h3 data-i18n="feat.1">Kevyt ja leikkisä</h3><p data-i18n="feat.1t">82 km/h huippunopeus, alle 200 kg paino. Enemmän hevosvoimia kuin Volkswagen Polossa.</p></div>
+          </article>
+          <article class="fcard">
+            <div class="fcard__img"><img src="media/founders.jpg" alt="" loading="lazy" style="object-position:85% 50%" data-feat="2" /></div>
+            <div class="fcard__body"><span class="fcard__n">02</span><h3 data-i18n="feat.2">Tehty tempuille</h3><p data-i18n="feat.2t">Säädettävä ohjaustanko ja Trixx-jalkapohjat antavat ajaa pystyssä ja temppuilla helposti.</p></div>
+          </article>
+          <article class="fcard">
+            <div class="fcard__img"><img src="media/riders.jpg" alt="" loading="lazy" data-feat="3" /></div>
+            <div class="fcard__body"><span class="fcard__n">03</span><h3 data-i18n="feat.3">2 hengen vesijetti</h3><p data-i18n="feat.3t">Mukava 2up istuin, kaveri tai kumppani mahtuu kyytiin.</p></div>
+          </article>
+          <article class="fcard">
+            <div class="fcard__img"><img src="media/jet-spin-poster.jpg" alt="" loading="lazy" data-feat="4" /></div>
+            <div class="fcard__body"><span class="fcard__n">04</span><h3 data-i18n="feat.4">Täysin turvallinen</h3><p data-i18n="feat.4t">Pelastusliivit, paikannin ja muut turvavarusteet kuuluvat aina hintaan.</p></div>
+          </article>
+          <div class="fcard fcard--cta">
+            <p class="feats__quote" data-i18n="feats.quote">Aja sitä, älä vain katso kuvia.</p>
+            <a class="btn btn--lg" href="https://www.82rentals.com/varaa"><span data-i18n="feats.cta">Varaa tämä vesijetti</span> <span aria-hidden="true">→</span></a>
           </div>
-          <p class="lead reveal" data-i18n="feats.lead">Ensikertalaisystävällinen ja turvallinen vesijetti.</p>
         </div>
-        <div class="feats__grid">
-          <figure class="feats__photo" id="featsPhoto">
-            <img src="media/riders.jpg" alt="Kaksi ajajaa 82Rentalsin vihreällä Sea-Doo Spark Trixx -vesijetillä Helsingin satamassa" loading="lazy" width="1400" height="1400" />
-            <figcaption><span class="dotlive"></span>Helsinki</figcaption>
-          </figure>
-          <ul class="feats__list">
-            <li class="feat">
-              <span class="feat__ico"><svg viewBox="0 0 24 24" class="ico"><path d="M13 2 4 14h7l-1 8 9-12h-7Z"/></svg></span>
-              <div><h3 data-i18n="feat.1">Kevyt ja leikkisä</h3><p data-i18n="feat.1t">82 km/h huippunopeus, alle 200 kg paino. Enemmän hevosvoimia kuin Volkswagen Polossa.</p></div>
-            </li>
-            <li class="feat">
-              <span class="feat__ico"><svg viewBox="0 0 24 24" class="ico"><path d="M3 17c3 0 3-2 6-2s3 2 6 2 3-2 6-2"/><path d="M8 11c1-4 4-7 9-7-1 3-3 6-6 7"/></svg></span>
-              <div><h3 data-i18n="feat.2">Tehty tempuille</h3><p data-i18n="feat.2t">Säädettävä ohjaustanko ja Trixx-jalkapohjat antavat ajaa pystyssä ja temppuilla helposti.</p></div>
-            </li>
-            <li class="feat">
-              <span class="feat__ico"><svg viewBox="0 0 24 24" class="ico"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="8" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.2c3 .2 5.5 2.6 6 5.8"/></svg></span>
-              <div><h3 data-i18n="feat.3">2 hengen vesijetti</h3><p data-i18n="feat.3t">Mukava 2up istuin, kaveri tai kumppani mahtuu kyytiin.</p></div>
-            </li>
-            <li class="feat">
-              <span class="feat__ico"><svg viewBox="0 0 24 24" class="ico"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></span>
-              <div><h3 data-i18n="feat.4">Täysin turvallinen</h3><p data-i18n="feat.4t">Pelastusliivit, paikannin ja muut turvavarusteet kuuluvat aina hintaan.</p></div>
-            </li>
-            <li class="feats__cta">
-              <p class="feats__quote" data-i18n="feats.quote">Aja sitä, älä vain katso kuvia.</p>
-              <a class="btn" href="https://www.82rentals.com/varaa"><span data-i18n="feats.cta">Varaa tämä vesijetti</span> <span aria-hidden="true">→</span></a>
-            </li>
-          </ul>
-        </div>
+        <div class="feats__progress" aria-hidden="true"><i id="featsBar"></i></div>
       </div>
     </section>
 
@@ -326,11 +291,16 @@
     </section>
 
     <!-- SOME -->
-    <section class="social section" id="social">
+    <section class="social" id="social">
+      <div class="social__pin">
       <span class="ghost-num" aria-hidden="true">82</span>
       <div class="wrap social__grid">
         <div class="phone" id="phone">
+          <span class="ptag ptag--1" aria-hidden="true">#vesijetti</span>
+          <span class="ptag ptag--2" aria-hidden="true">#helsinki</span>
+          <span class="ptag ptag--3" aria-hidden="true">#seadoo</span>
           <div class="phone__frame">
+            <div class="phone__back" aria-hidden="true"><span class="phone__cam"><i></i><i></i><i></i></span><img src="media/logo.png" alt="" /></div>
             <div class="phone__notch"></div>
             <video class="phone__video" src="media/social.mp4" poster="media/social-poster.jpg" muted playsinline loop autoplay preload="none"></video>
             <div class="phone__ui">
@@ -360,13 +330,26 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
-    <!-- 4. ARVOSTELUT -->
+    <!-- ARVOSTELUT: tähdet täyttyvät skrollatessa, vedenalainen valo taustalla -->
     <section class="reviews section" id="reviews">
+      <div class="caustics" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="wrap">
-        <span class="eyebrow reveal" data-i18n="reviews.eyebrow">Arvostelut</span>
-        <h2 class="h2 reveal" data-i18n-html="reviews.title"><span class="hl">Asiakkaat kertovat.</span></h2>
+        <div class="reviews__top">
+          <div>
+            <span class="eyebrow eyebrow--light reveal" data-i18n="reviews.eyebrow">Arvostelut</span>
+            <h2 class="h2 h2--light reveal" data-i18n-html="reviews.title"><span class="hl">Asiakkaat kertovat.</span></h2>
+          </div>
+          <div class="rating" id="rating" aria-label="Google arvostelut 4,9 / 5">
+            <strong class="rating__num" id="ratingNum">4,9</strong>
+            <div>
+              <div class="rating__stars" aria-hidden="true"><span class="rating__fill" id="ratingFill">★★★★★</span>★★★★★</div>
+              <span class="rating__label" data-i18n="tick.4">Google arvostelut 4,9 / 5</span>
+            </div>
+          </div>
+        </div>
         <div class="reviews__widget reveal" aria-label="Google-arvostelut" id="reviewsWidget">
           <script async defer src="https://cdn.trustindex.io/loader.js?142436872a95188bcc068c5bc4a"></script>
         </div>
@@ -425,6 +408,7 @@
 
     <!-- UKK -->
     <section class="faq section" id="ukk">
+      <span class="faq__q" aria-hidden="true">?</span>
       <div class="wrap faq__grid">
         <div class="faq__side">
           <span class="eyebrow reveal" data-i18n="faq.eyebrow">UKK</span>
@@ -488,16 +472,18 @@
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta section">
-      <div class="wrap">
-        <div class="cta__box" id="ctaBox">
-          <span class="cta__num" aria-hidden="true">82</span>
-          <div>
-            <span class="eyebrow eyebrow--light" data-i18n="cta.eyebrow">Valmiina lähtemään</span>
-            <h2 class="h2 h2--light" data-i18n="cta.title">Valmiina vesille?</h2>
-            <p class="lead lead--light" data-i18n="cta.text">Varaa Sea-Doo Spark Trixx 2up 60 sekunnissa. Lähtö Tervasaaren satamasta.</p>
-          </div>
+    <!-- FINAALI: kiinnitetty, kuva avautuu koko ruudulle ja otsikko kasvaa -->
+    <section class="finale" id="finale">
+      <div class="finale__pin">
+        <div class="finale__media" id="finaleMedia">
+          <img src="media/hero-end.jpg" alt="" loading="lazy" />
+          <div class="finale__shade" aria-hidden="true"></div>
+        </div>
+        <span class="finale__num" aria-hidden="true">82</span>
+        <div class="finale__copy">
+          <span class="eyebrow eyebrow--light" data-i18n="cta.eyebrow">Valmiina lähtemään</span>
+          <h2 class="finale__title" data-i18n="cta.title">Valmiina vesille?</h2>
+          <p class="lead lead--light" data-i18n="cta.text">Varaa Sea-Doo Spark Trixx 2up 60 sekunnissa. Lähtö Tervasaaren satamasta.</p>
           <a class="btn btn--lg" href="https://www.82rentals.com/varaa"><span data-i18n="cta.book">Varaa nyt</span> <span aria-hidden="true">→</span></a>
         </div>
       </div>
