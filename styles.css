@@ -840,3 +840,43 @@ h1, h2, h3, h4 { font-stretch: normal; }
 .jp-n, .fcard__n { font-weight: 200; }
 .ghost-num, .hero__num, .team__num, .footer__num, .finale__num, .jet__word, .feats__word, .faq__q, .offer__num, .cta__num { font-weight: 200; font-stretch: normal; }
 .mobile-menu a { font-weight: 300; }
+
+/* ======================================================================
+   HERO v3: kiinnitetty tarina (aurinkoinen kesäpäivä)
+   ====================================================================== */
+.hero { display: block; min-height: 0; }
+.hero__pin { position: relative; height: 100vh; height: 100svh; overflow: hidden; isolation: isolate; }
+.hero__clip { z-index: -1; }
+.hero__video { animation: none; }
+.hero__shade {
+  opacity: .85;
+  background:
+    linear-gradient(90deg, rgba(4,20,39,.78) 0%, rgba(4,20,39,.42) 34%, rgba(4,20,39,0) 62%),
+    linear-gradient(180deg, rgba(4,20,39,.45) 0%, rgba(4,20,39,0) 26%, rgba(4,20,39,0) 58%, rgba(4,20,39,.7) 100%);
+}
+.beat { position: absolute; z-index: 3; color: #fff; }
+.beat--1, .beat--2 { left: var(--gutter); bottom: calc(13vh + 48px); max-width: min(720px, 88vw); }
+.beat--1 .hero__title { margin-top: 22px; }
+.beat--1 .btn { margin-top: 30px; }
+.hero__lead { font-family: var(--font-display); font-weight: 250; font-size: clamp(24px, 2.6vw, 40px); line-height: 1.2; letter-spacing: -.015em; color: #fff; margin: 0; max-width: 680px; text-shadow: 0 2px 30px rgba(4,20,39,.5); }
+.beat--3 { left: var(--gutter); bottom: calc(13vh + 48px); margin: 0; display: grid; gap: 16px; perspective: 1000px; }
+.beat--3 li { display: flex; align-items: baseline; gap: 18px; font-family: var(--font-display); font-weight: 250; font-size: clamp(30px, 4.4vw, 64px); line-height: 1; letter-spacing: -.03em; text-shadow: 0 2px 30px rgba(4,20,39,.45); }
+.beat--3 li::before { display: none; }
+.hb__n { font-size: 14px; font-family: var(--font-body); font-weight: 600; letter-spacing: .2em; color: var(--sky); }
+.beat--4 { right: var(--gutter); bottom: calc(13vh + 30px); width: min(380px, 88vw); }
+.beat--4 .offer { position: relative; right: auto; bottom: auto; translate: none; max-width: none; }
+.hero__progress { position: absolute; left: var(--gutter); right: var(--gutter); bottom: calc(13vh + 16px); height: 2px; background: rgba(255,255,255,.18); z-index: 6; max-width: 260px; }
+.hero__progress i { position: absolute; inset: 0; background: var(--sky); transform-origin: left; transform: scaleX(0); }
+.hero__scroll { left: 50%; }
+@media (max-width: 820px) {
+  .hero__shade { background: linear-gradient(180deg, rgba(4,20,39,.55) 0%, rgba(4,20,39,0) 30%, rgba(4,20,39,.2) 55%, rgba(4,20,39,.85) 100%); }
+  .beat--1, .beat--2, .beat--3 { bottom: calc(7vh + 40px); right: var(--gutter); }
+  .beat--4 { left: var(--gutter); right: var(--gutter); width: auto; bottom: calc(7vh + 24px); }
+  .hero__progress { bottom: calc(7vh + 14px); }
+  .beat--3 li { font-size: clamp(28px, 8vw, 40px); }
+}
+.hero__lead { font-weight: 300; text-shadow: 0 2px 24px rgba(4,20,39,.85), 0 0 2px rgba(4,20,39,.4); }
+.beat--3 li, .hero__title { text-shadow: 0 2px 28px rgba(4,20,39,.6); }
+@media (max-width: 820px) {
+  .hero__shade { background: linear-gradient(180deg, rgba(4,20,39,.55) 0%, rgba(4,20,39,0) 26%, rgba(4,20,39,.35) 48%, rgba(4,20,39,.92) 100%); }
+}

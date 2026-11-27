@@ -41,26 +41,6 @@
   const list = $('.ticker__list', track);
   for (let i = 0; i < 3; i++) { const c = list.cloneNode(true); c.setAttribute('aria-hidden', 'true'); track.appendChild(c); }
 
-  /* ---------- Hero-video ---------- */
-  const heroVideo = $('#heroVideo');
-  const heroSrc = heroVideo.dataset[window.innerWidth < 820 ? 'srcMobile' : 'src'];
-  if (heroSrc) {
-    heroVideo.muted = true;
-    heroVideo.defaultMuted = true;
-    heroVideo.setAttribute('muted', '');
-    heroVideo.src = heroSrc;
-    heroVideo.classList.add('has-video');
-    const tryPlay = () => { const p = heroVideo.play(); if (p && p.catch) p.catch(() => {}); };
-    tryPlay();
-    heroVideo.addEventListener('canplay', tryPlay, { once: true });
-    // Jos selain esti automaattisen toiston (esim. virransäästötila), käynnistä ensimmäisestä vuorovaikutuksesta
-    const kick = () => {
-      if (heroVideo.paused && !heroVideo.ended) tryPlay();
-      ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach(e => window.removeEventListener(e, kick));
-    };
-    ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach(e => window.addEventListener(e, kick, { passive: true }));
-  }
-
   /* ---------- Laskurit ---------- */
   function runCounter(el) {
     const target = parseFloat(el.dataset.count);
@@ -111,25 +91,45 @@
     }));
   }
 
-  /* ---------- 1. Hero: avausnäytös ---------- */
+  /* ---------- 1. Hero: aurinkoinen kesäpäivä Helsingissä, tarina etenee skrollauksen tahdissa ---------- */
+  const heroVideo = $('#heroVideo');
+  const heroMobile = window.innerWidth < 820;
+  if (heroMobile) { heroVideo.dataset.src = heroVideo.dataset.srcMobile; heroVideo.poster = heroVideo.dataset.posterMobile; }
+  const setHero = scrubVideo(heroVideo, '#top');
+  gsap.set('.beat--2, .beat--3, .beat--4', { autoAlpha: 0 });
+
   const intro = gsap.timeline({ defaults: { ease: 'expo.out' } });
   intro
-    .from('.hero__video', { scale: 1.25, filter: 'brightness(0.2) blur(6px)', duration: 2.6, ease: 'power3.out' }, 0)
+    .from('.hero__media', { scale: 1.2, filter: 'brightness(0.3) blur(8px)', duration: 2.4, ease: 'power3.out' }, 0)
     .from('.letterbox--top', { yPercent: 100, scaleY: 3, duration: 1.6 }, 0)
     .from('.letterbox--bottom', { yPercent: -100, scaleY: 3, duration: 1.6 }, 0)
-    .from('.hero .intro', { y: 60, autoAlpha: 0, duration: 1.6, stagger: 0.12 }, 0.45)
+    .from('.beat--1 .intro', { y: 60, autoAlpha: 0, duration: 1.6, stagger: 0.12 }, 0.4)
     .from('.hero__num', { autoAlpha: 0, x: 120, duration: 2.4 }, 0.4)
     .fromTo('.hero .hl', { '--hl': 0 }, { '--hl': 1, duration: 1.2, ease: 'power3.inOut' }, 1.1);
 
-  /* Hero: skrollatessa kamera "ajaa sisään" ja mustat palkit vetäytyvät */
-  gsap.timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } })
-    .to('.hero__media', { scale: 1.15, yPercent: 12, ease: 'none' }, 0)
-    .to('.letterbox--top', { yPercent: -100, ease: 'none', duration: 0.3 }, 0)
-    .to('.letterbox--bottom', { yPercent: 100, ease: 'none', duration: 0.3 }, 0)
-    .to('.hero__copy', { yPercent: -18, autoAlpha: 0.1, ease: 'none' }, 0)
-    .to('.offer', { yPercent: -35, ease: 'none' }, 0)
-    .to('.hero__num', { yPercent: -30, ease: 'none' }, 0)
-    .to('.hero__shade', { opacity: 1.0, ease: 'none' }, 0);
+  const heroP = { p: 0 };
+  const ht = gsap.timeline({
+    defaults: { ease: 'none' },
+    scrollTrigger: { trigger: '#top', pin: true, start: 'top top', anticipatePin: 1, scrub: 0.8,
+      end: () => '+=' + Math.round(window.innerHeight * (heroMobile ? 3 : 3.4)),
+      onUpdate: s => gsap.set('#heroBar', { scaleX: s.progress }) }
+  });
+  ht.to(heroP, { p: 1, duration: 10, onUpdate: () => setHero(heroP.p) }, 0)
+    .to('.letterbox--top', { yPercent: -100, duration: 1 }, 0)
+    .to('.letterbox--bottom', { yPercent: 100, duration: 1 }, 0)
+    .to('.hero__scroll', { autoAlpha: 0, duration: 0.5 }, 0)
+    .to('.hero__num', { xPercent: -30, duration: 10 }, 0)
+    // Vaihe 1 → 2
+    .to('.beat--1', { y: -80, autoAlpha: 0, filter: 'blur(8px)', duration: 0.9 }, 1.5)
+    .fromTo('.beat--2', { y: 80, autoAlpha: 0, filter: 'blur(8px)' }, { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.9 }, 2.3)
+    .to('.beat--2', { y: -80, autoAlpha: 0, filter: 'blur(8px)', duration: 0.8 }, 4.4)
+    // Vaihe 3: kohdat yksi kerrallaan
+    .set('.beat--3', { autoAlpha: 1 }, 5.1)
+    .fromTo('.beat--3 li', { x: 120, autoAlpha: 0, rotateY: -35 }, { x: 0, autoAlpha: 1, rotateY: 0, duration: 0.7, stagger: 0.55, ease: 'power2.out' }, 5.1)
+    .to('.beat--3 li', { x: -80, autoAlpha: 0, duration: 0.6, stagger: 0.1 }, 7.3)
+    // Vaihe 4: tarjouskortti kääntyy esiin
+    .fromTo('.beat--4', { autoAlpha: 0, x: 160, rotateY: -38, scale: 0.9, transformPerspective: 1200 }, { autoAlpha: 1, x: 0, rotateY: 0, scale: 1, duration: 1.1, ease: 'power2.out' }, 7.9)
+    .to('.hero__shade', { opacity: 1, duration: 2 }, 8);
 
   /* ---------- Yleiset paljastukset (erä kerrallaan, kun elementti tulee näkyviin) ---------- */
   ScrollTrigger.config({ ignoreMobileResize: true });
