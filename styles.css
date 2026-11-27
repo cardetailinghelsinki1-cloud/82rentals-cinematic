@@ -822,3 +822,21 @@ body { background: var(--abyss); }
 .reviews__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; opacity: .45;
   -webkit-mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent); }
 .reviews .caustics { z-index: -1; }
+
+/* ======================================================================
+   Otsikkofontti: Outfit (ohut, geometrinen). Archivo jää vain varalle.
+   ====================================================================== */
+@font-face {
+  font-family: 'Outfit'; font-style: normal; font-display: swap; font-weight: 100 900;
+  src: url(fonts/outfit.woff2) format('woff2-variations'), url(fonts/outfit.woff2) format('woff2');
+}
+:root { --font-display: 'Outfit', 'Archivo', system-ui, sans-serif; }
+h1, h2, h3, h4 { font-stretch: normal; }
+.hero__title, .h2, .finale__title { font-weight: 250; letter-spacing: -.035em; }
+.hero__title .hl, .h2 .hl, .finale__title .hl { font-weight: 300; }
+.h3, .feats__quote { font-weight: 300; letter-spacing: -.025em; font-stretch: normal; }
+.tier__name, .fcard h3, .jp-slide h3, .map__card h3, .offer__title, .note h3, .feat h3, .person h4, .qa summary, .footer h4 { font-weight: 400; letter-spacing: -.01em; }
+.tier__price strong, .rating__num, .stat strong, .offer__price, .specs dd, .channels strong, .assure strong { font-weight: 300; }
+.jp-n, .fcard__n { font-weight: 200; }
+.ghost-num, .hero__num, .team__num, .footer__num, .finale__num, .jet__word, .feats__word, .faq__q, .offer__num, .cta__num { font-weight: 200; font-stretch: normal; }
+.mobile-menu a { font-weight: 300; }
