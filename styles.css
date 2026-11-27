@@ -890,3 +890,20 @@ h1, h2, h3, h4 { font-stretch: normal; }
 .phone3d__screen .phone__video { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
 .phone--real .ptag--1 { left: 2%; top: 22%; } .phone--real .ptag--2 { right: 0; top: 46%; } .phone--real .ptag--3 { left: 8%; bottom: 20%; }
 @media (max-width: 820px) { .phone3d { width: min(420px, 92vw); } }
+
+/* ======================================================================
+   Otsikkofontti: Newsreader (elegantti serif, optinen koko automaattinen)
+   ====================================================================== */
+@font-face {
+  font-family: 'Newsreader'; font-style: normal; font-display: swap; font-weight: 200 800;
+  src: url(fonts/newsreader.woff2) format('woff2-variations'), url(fonts/newsreader.woff2) format('woff2');
+}
+:root { --font-display: 'Newsreader', Georgia, 'Times New Roman', serif; }
+h1, h2, h3, h4, .h2, .h3 { font-optical-sizing: auto; }
+.hero__title, .h2, .finale__title { font-weight: 300; letter-spacing: -.02em; line-height: 1.02; }
+.hero__title .hl, .h2 .hl, .finale__title .hl { font-weight: 300; }
+.h3, .feats__quote, .hero__lead, .beat--3 li { font-weight: 300; letter-spacing: -.012em; }
+.tier__name, .fcard h3, .jp-slide h3, .map__card h3, .offer__title, .note h3, .feat h3, .person h4, .qa summary, .footer h4 { font-weight: 400; letter-spacing: -.005em; }
+.tier__price strong, .rating__num, .stat strong, .offer__price, .specs dd, .channels strong, .assure strong { font-weight: 350; letter-spacing: -.01em; }
+.jp-n, .fcard__n { font-weight: 300; }
+.mobile-menu a { font-weight: 300; }
