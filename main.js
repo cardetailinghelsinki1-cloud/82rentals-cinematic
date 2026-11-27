@@ -135,7 +135,34 @@
     state = 'done';
     fallback.kill(); story.progress(1);
     if (heroVideo.duration) { heroVideo.pause(); heroVideo.currentTime = heroVideo.duration - 0.05; }
+    enableHeroScrub();
   };
+
+  /* Kun tarina on pyörinyt loppuun, hero kiinnitetään ja sitä voi skrollata vapaasti taakse- ja eteenpäin.
+     Käyttäjä sijoitetaan kiinnityksen loppuun (= sama lopputila), joten näkymä ei hyppää. */
+  let heroTarget = null;
+  gsap.ticker.add(() => {
+    if (heroTarget === null || !heroVideo.duration || heroVideo.readyState < 2) return;
+    const t = heroTarget * (heroVideo.duration - 0.05);
+    const d = t - heroVideo.currentTime;
+    if (Math.abs(d) > 0.015 && !heroVideo.seeking) heroVideo.currentTime = heroVideo.currentTime + d * 0.35;
+  });
+  function enableHeroScrub() {
+    const y = window.scrollY;
+    const len = Math.round(window.innerHeight * (heroMobile ? 2.6 : 3));
+    heroTarget = 1;
+    ScrollTrigger.create({
+      trigger: '#top', pin: true, start: 'top top', end: '+=' + len, anticipatePin: 1, refreshPriority: 10,
+      animation: story, scrub: 0.6,
+      onUpdate: s => { heroTarget = s.progress; }
+    });
+    ScrollTrigger.sort();
+    ScrollTrigger.refresh();
+    const to = y + len;
+    if (lenis) lenis.scrollTo(to, { immediate: true, force: true }); else window.scrollTo(0, to);
+    window.scrollTo(0, to);
+    ScrollTrigger.update();
+  }
   const start = () => {
     if (state !== 'idle') return;
     state = 'playing';
