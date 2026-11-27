@@ -77,6 +77,28 @@
     return;
   }
 
+  /* ---------- Skrollaukseen sidottu video (lataus vasta lähellä, pehmeä haku) ---------- */
+  function scrubVideo(v, triggerSel) {
+    let target = 0, loaded = false;
+    const load = () => {
+      if (loaded) return; loaded = true;
+      v.muted = true; v.src = v.dataset.src; v.load();
+      v.addEventListener('loadeddata', () => {
+        // iOS: video pitää "herättää" ennen kuin currentTime-haku piirtää ruudun
+        const p = v.play(); if (p && p.then) p.then(() => v.pause()).catch(() => {}); else v.pause();
+        v.classList.add('is-ready');
+      }, { once: true });
+    };
+    ScrollTrigger.create({ trigger: triggerSel, start: 'top 250%', once: true, onEnter: load });
+    gsap.ticker.add(() => {
+      if (!loaded || !v.duration || v.readyState < 2) return;
+      const t = target * (v.duration - 0.05);
+      const d = t - v.currentTime;
+      if (Math.abs(d) > 0.015 && !v.seeking) v.currentTime = v.currentTime + d * 0.35;
+    });
+    return p => { target = Math.min(1, Math.max(0, p)); };
+  }
+
   /* ---------- Sulava skrollaus ---------- */
   gsap.registerPlugin(ScrollTrigger);
   if (window.Lenis) {
@@ -134,7 +156,7 @@
     const slides = $$('.jp-slide', jetSec);
     const spots = $$('.hs', jetSec);
     const countEl = $('#jetCount');
-    const steps = [0, 0.34, 0.47, 0.6, 0.73, 0.86]; // intro, 01, 02, 03, 04, tekniset tiedot
+    const steps = [0, 0.25, 0.343, 0.436, 0.53, 0.615]; // intro, 01, 02, 03, 04, tekniset tiedot (aikajanan 3.5 / 4.8 / 6.1 / 7.4 / 8.6 ÷ 14)
     let active = -1;
     gsap.set(slides, { autoAlpha: 0, y: 24 });
     const setActive = i => {
@@ -158,7 +180,7 @@
       defaults: { ease: 'none' },
       scrollTrigger: {
         trigger: jetSec, pin: true, start: 'top top', anticipatePin: 1,
-        end: () => '+=' + Math.round(window.innerHeight * (small ? 3.4 : 3.8)),
+        end: () => '+=' + Math.round(window.innerHeight * (small ? 4.6 : 5.2)),
         scrub: 0.8,
         onUpdate: self => {
           const p = self.progress;
@@ -168,7 +190,7 @@
         }
       }
     });
-    jt.to('.jet__word', { xPercent: -55, duration: 10 }, 0)
+    jt.to('.jet__word', { xPercent: -70, duration: 14 }, 0)
       .fromTo('.jet__stage', { scale: 0.82, rotate: -3 }, { scale: 1, rotate: 0, duration: 3 }, 0)
       .to('.jet__svg .jl, .jet__svg .jp', { strokeDashoffset: 0, duration: 1.4, stagger: 0.12 }, 0)
       .to('.jet__body', { '--fill': 1, duration: 0.9 }, 2.3)
@@ -179,8 +201,17 @@
       jt.to('.jet__svg', { scale: z, xPercent: (0.5 - fx) * 100 * (z - 0.6), yPercent: (0.5 - fy) * 100 * (z - 0.7), duration: 1.1, ease: 'power2.inOut' }, 3.5 + k * 1.3);
     });
     jt.to('.jet__svg', { scale: 1, xPercent: 0, yPercent: 0, duration: 1.1, ease: 'power2.inOut' }, 8.6)
-      .to('.jet__head', { autoAlpha: 1, y: 0, duration: 0.6 }, 8.8)
-      .to({}, { duration: 0.6 }, 9.7);
+      .to('.jet__head', { autoAlpha: 1, y: 0, duration: 0.6 }, 8.8);
+
+    // Piirros muuttuu oikeaksi jetiksi (Higgsfield-studiokuva) ja jetti pyörähtää skrollatessa
+    const spin = $('.jet__spin');
+    const setSpin = spin ? scrubVideo(spin, '#jet') : () => {};
+    const spinP = { p: 0 };
+    jt.fromTo('.jet__real', { clipPath: 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1, ease: 'power2.inOut' }, 9.1)
+      .to('.jet__svg', { autoAlpha: 0, duration: 0.7 }, 9.5)
+      .to('.jet__spot', { scale: 1.25, duration: 1 }, 9.1)
+      .to(spinP, { p: 1, duration: 3.4, onUpdate: () => setSpin(spinP.p) }, 10.1)
+      .to({}, { duration: 0.6 }, 13.5);
   }
 
   /* ---------- 4. Kalusto: kuva avautuu ja kortit liukuvat ---------- */
@@ -201,6 +232,14 @@
     gsap.utils.toArray('.tier').forEach(t => gsap.from(t, { y: 90, rotateX: 18, autoAlpha: 0, duration: 1.3, ease: 'expo.out',
       scrollTrigger: { trigger: t, start: 'top 88%' } }));
   });
+
+  /* Hinnaston taustavideo: saaristolento etenee skrollauksen mukana */
+  const archVideo = $('.pricing__video');
+  if (archVideo) {
+    const setArch = scrubVideo(archVideo, '#hinnasto');
+    ScrollTrigger.create({ trigger: '#hinnasto', start: 'top bottom', end: 'bottom top', onUpdate: s => setArch(s.progress) });
+    gsap.fromTo('.pricing__video', { scale: 1.15 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '#hinnasto', start: 'top bottom', end: 'bottom top', scrub: true } });
+  }
 
   /* ---------- Tiimi + yhteystiedot ---------- */
   gsap.from('.person', { y: 70, autoAlpha: 0, duration: 1.3, ease: 'expo.out', stagger: 0.12, scrollTrigger: { trigger: '.crew__grid', start: 'top 85%' } });

@@ -8,4 +8,5 @@
 - Laitteisto-osio (#jet) on kiinnitetty näkymä: oma SVG-kuvitus piirtyy, saa värit ja kamera kiertää osat 01–04 (main.js, `focus`-taulukko vastaa SVG:n kohdepisteitä).
 - Julkaisu: push `main`-haaraan → Vercel julkaisee automaattisesti. Käyttäjä haluaa muutokset suoraan livenä.
 - Hero-video: `media/hero.mp4` (1080p) ja `media/hero-720.mp4` (mobiili), Higgsfield Seedance 2.0, ei ääntä. Toistetaan kerran ja jäädään viimeiseen ruutuun.
+- Laitteisto-osion lopussa piirros vaihtuu `media/jet-spin.mp4`-videoon (Higgsfield, 360°-pyörähdys, juliste `media/jet-spin-poster.jpg`) ja hinnaston taustalla on `media/archipelago.mp4` (saaristolento). Molemmat on sidottu skrollaukseen (`scrubVideo` main.js:ssä), joten ne on pakattu tiheillä avainruuduilla (`ffmpeg -g 2`). Python http.server ei tue Range-pyyntöjä, joten videohaku ei toimi sillä paikallisesti; Vercel tukee niitä.
 - Higgsfield-generoinneista kerrotaan aina kredit-arvio ja odotetaan käyttäjän vahvistusta.
