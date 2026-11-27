@@ -236,3 +236,5 @@ Object.assign(window.I18N.en, {
   'ct.deliv': 'Need delivery elsewhere?',
   'ct.delivT': "Possible for an extra fee by arrangement. Call or email before booking and we'll agree on the place and price."
 });
+Object.assign(window.I18N.fi, { 'hero.skip': 'Ohita' });
+Object.assign(window.I18N.en, { 'hero.skip': 'Skip' });
