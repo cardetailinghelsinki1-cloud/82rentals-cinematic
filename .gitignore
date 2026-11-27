@@ -1,0 +1,4 @@
+# npm (sivu on staattinen, kirjastot vendor/-kansiossa)
+node_modules/
+package.json
+package-lock.json
