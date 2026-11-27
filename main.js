@@ -101,8 +101,6 @@
   const intro = gsap.timeline({ defaults: { ease: 'expo.out' } });
   intro
     .from('.hero__media', { scale: 1.2, filter: 'brightness(0.3) blur(8px)', duration: 2.4, ease: 'power3.out' }, 0)
-    .from('.letterbox--top', { yPercent: 100, scaleY: 3, duration: 1.6 }, 0)
-    .from('.letterbox--bottom', { yPercent: -100, scaleY: 3, duration: 1.6 }, 0)
     .from('.beat--1 .intro', { y: 60, autoAlpha: 0, duration: 1.6, stagger: 0.12 }, 0.4)
     .from('.hero__num', { autoAlpha: 0, x: 120, duration: 2.4 }, 0.4)
     .fromTo('.hero .hl', { '--hl': 0 }, { '--hl': 1, duration: 1.2, ease: 'power3.inOut' }, 1.1);
@@ -115,12 +113,12 @@
       onUpdate: s => gsap.set('#heroBar', { scaleX: s.progress }) }
   });
   ht.to(heroP, { p: 1, duration: 10, onUpdate: () => setHero(heroP.p) }, 0)
-    .to('.letterbox--top', { yPercent: -100, duration: 1 }, 0)
-    .to('.letterbox--bottom', { yPercent: 100, duration: 1 }, 0)
     .to('.hero__scroll', { autoAlpha: 0, duration: 0.5 }, 0)
     .to('.hero__num', { xPercent: -30, duration: 10 }, 0)
     // Vaihe 1 → 2
     .to('.beat--1', { y: -80, autoAlpha: 0, filter: 'blur(8px)', duration: 0.9 }, 1.5)
+    .fromTo('.hero__shade:not(.hero__shade--r)', { opacity: heroMobile ? 0.85 : 0 }, { opacity: 0.85, duration: 0.9 }, 1.6)
+    .to('.hero__shade--r', { opacity: 0, duration: 0.9 }, 1.6)
     .fromTo('.beat--2', { y: 80, autoAlpha: 0, filter: 'blur(8px)' }, { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.9 }, 2.3)
     .to('.beat--2', { y: -80, autoAlpha: 0, filter: 'blur(8px)', duration: 0.8 }, 4.4)
     // Vaihe 3: kohdat yksi kerrallaan
