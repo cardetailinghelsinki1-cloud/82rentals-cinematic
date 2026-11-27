@@ -20,13 +20,13 @@
 
   <!-- Navigaatio -->
   <header class="nav" id="nav">
-    <a class="nav__logo" href="/" aria-label="82Rentals"><img src="media/logo.png" alt="82Rentals" width="56" height="56" /></a>
+    <a class="nav__logo" href="#top" aria-label="82Rentals"><img src="media/logo.png" alt="82Rentals" width="56" height="56" /></a>
     <nav class="nav__links" aria-label="Päävalikko">
-      <a href="https://www.82rentals.com/vesijettimme" data-i18n="nav.jet">Vesijettimme</a>
-      <a href="https://www.82rentals.com/hinnasto" data-i18n="nav.pricing">Hinnasto</a>
-      <a href="https://www.82rentals.com/meista" data-i18n="nav.about">Meistä</a>
-      <a href="https://www.82rentals.com/ukk" data-i18n="nav.faq">UKK</a>
-      <a href="https://www.82rentals.com/yhteystiedot" data-i18n="nav.contact">Yhteystiedot</a>
+      <a href="#jet" data-i18n="nav.jet">Vesijettimme</a>
+      <a href="#hinnasto" data-i18n="nav.pricing">Hinnasto</a>
+      <a href="#team" data-i18n="nav.about">Meistä</a>
+      <a href="#ukk" data-i18n="nav.faq">UKK</a>
+      <a href="#yhteystiedot" data-i18n="nav.contact">Yhteystiedot</a>
     </nav>
     <div class="nav__right">
       <div class="lang" role="group" aria-label="Kieli">
@@ -38,11 +38,11 @@
     </div>
   </header>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="https://www.82rentals.com/vesijettimme" data-i18n="nav.jet">Vesijettimme</a>
-    <a href="https://www.82rentals.com/hinnasto" data-i18n="nav.pricing">Hinnasto</a>
-    <a href="https://www.82rentals.com/meista" data-i18n="nav.about">Meistä</a>
-    <a href="https://www.82rentals.com/ukk" data-i18n="nav.faq">UKK</a>
-    <a href="https://www.82rentals.com/yhteystiedot" data-i18n="nav.contact">Yhteystiedot</a>
+    <a href="#jet" data-i18n="nav.jet">Vesijettimme</a>
+    <a href="#hinnasto" data-i18n="nav.pricing">Hinnasto</a>
+    <a href="#team" data-i18n="nav.about">Meistä</a>
+    <a href="#ukk" data-i18n="nav.faq">UKK</a>
+    <a href="#yhteystiedot" data-i18n="nav.contact">Yhteystiedot</a>
   </div>
 
   <main>
@@ -113,7 +113,210 @@
       </div>
     </section>
 
-    <!-- 3. SOME -->
+    <!-- 3. LAITTEISTO: kiinnitetty näkymä, jossa vesijetti piirtyy, saa värinsä ja esittelee osansa -->
+    <section class="jet" id="jet" aria-labelledby="jetTitle">
+      <div class="jet__pin">
+        <div class="jet__bg" aria-hidden="true">
+          <div class="jet__grid"></div>
+          <div class="jet__spot"></div>
+          <span class="jet__word">SPARK TRIXX</span>
+        </div>
+
+        <div class="jet__head">
+          <span class="eyebrow eyebrow--light" data-i18n="jet.eyebrow">Laitteisto</span>
+          <h2 class="h2 h2--light" id="jetTitle" data-i18n-html="jet.title">Sea-Doo Spark Trixx <span class="hl">2up.</span></h2>
+          <p class="lead lead--light" data-i18n="jet.lead">Leikkisä ja ketterä vesijetti. Suunniteltu kuskeille, jotka haluavat pitää hauskaa aalloilla turvallisesti.</p>
+        </div>
+
+        <div class="jet__stage">
+          <!-- Oma kuvitus: tyylitelty sivuprofiili 82Rentalsin vihreä–lime-väreissä -->
+          <svg class="jet__svg" viewBox="0 0 1000 400" role="img" aria-label="Sea-Doo Spark Trixx 2up -vesijetin piirros">
+            <defs>
+              <linearGradient id="gHull" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16202b"/><stop offset="1" stop-color="#05090f"/></linearGradient>
+              <linearGradient id="gDeck" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#159e7c"/><stop offset=".55" stop-color="#2fc3a6"/><stop offset="1" stop-color="#19a383"/></linearGradient>
+              <linearGradient id="gSeat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e4f75a"/><stop offset="1" stop-color="#b7cf1f"/></linearGradient>
+              <linearGradient id="gShine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+              <clipPath id="cJet"><path d="M60 232 H300 C450 232 620 236 760 226 C860 219 930 206 965 196 C950 232 905 262 840 282 C720 316 520 326 330 322 C220 320 140 312 96 300 L82 268 Z M64 232 C70 214 90 206 120 206 H250 C270 206 280 196 300 192 H560 C600 190 640 160 690 150 C760 138 860 160 965 196 Z"/></clipPath>
+            </defs>
+            <!-- vesiviiva -->
+            <g class="jet__water">
+              <path class="jl" pathLength="1" d="M10 336 C200 324 400 348 600 338 S880 330 990 326"/>
+              <path class="jl jl--faint" pathLength="1" d="M60 356 C240 346 420 366 620 358 S860 352 960 350"/>
+            </g>
+            <g class="jet__body">
+              <g transform="translate(140 -40) scale(0.72 1.15)">
+              <path class="jp jf-hull" pathLength="1" d="M60 232 H300 C450 232 620 236 760 226 C860 219 930 206 965 196 C950 232 905 262 840 282 C720 316 520 326 330 322 C220 320 140 312 96 300 L82 268 Z"/>
+              <path class="jp jf-deck" pathLength="1" d="M64 232 C70 214 90 206 120 206 H250 C270 206 280 196 300 192 H560 C600 190 640 160 690 150 C760 138 860 160 965 196 C930 206 860 219 760 226 C620 236 450 232 300 232 H64 Z"/>
+              <path class="jp jf-seat" pathLength="1" d="M285 196 C285 172 300 160 330 160 H545 C575 160 592 172 592 192 V196 Z"/>
+              <path class="jp jf-accent" pathLength="1" d="M700 152 C760 142 840 160 932 189 L906 197 C830 178 760 170 700 176 Z"/>
+              <path class="jp jf-dark" pathLength="1" d="M96 286 L58 290 L58 304 L100 301 Z"/>
+              <path class="jp jf-dark" pathLength="1" d="M60 232 L36 236 L42 254 L84 258"/>
+              <path class="jp jl--line" pathLength="1" d="M110 262 C300 272 600 270 862 250"/>
+              <path class="jp jl--line" pathLength="1" d="M640 170 L664 98"/>
+              <path class="jp jl--line jl--bar" pathLength="1" d="M636 96 Q664 86 706 90"/>
+              <rect class="jet__shine" x="-200" y="120" width="180" height="230" fill="url(#gShine)" clip-path="url(#cJet)"/>
+              </g>
+              <text class="jet__decal" x="420" y="300">82</text>
+            </g>
+            <!-- kohdepisteet -->
+            <g class="hs" data-hs="0" transform="translate(618 73)"><circle r="22" class="hs__ring"/><circle r="7" class="hs__dot"/></g>
+            <g class="hs" data-hs="1" transform="translate(457 151)"><circle r="22" class="hs__ring"/><circle r="7" class="hs__dot"/></g>
+            <g class="hs" data-hs="2" transform="translate(500 284)"><circle r="22" class="hs__ring"/><circle r="7" class="hs__dot"/></g>
+            <g class="hs" data-hs="3" transform="translate(716 268)"><circle r="22" class="hs__ring"/><circle r="7" class="hs__dot"/></g>
+          </svg>
+        </div>
+
+        <div class="jet__panel" aria-live="polite">
+          <div class="jp-slide jp-slide--intro">
+            <span class="jp-k" data-i18n="jet.anEyebrow">Tutustu jettiin</span>
+            <h3 data-i18n="jet.anTitle">Mistä Spark Trixx koostuu.</h3>
+            <p data-i18n="jet.anText">Tärkeimmät ominaisuudet kerralla. Käyttöönotto vie minuutteja.</p>
+          </div>
+          <div class="jp-slide"><span class="jp-n">01</span><h3 data-i18n="jet.h1">Säädettävä ohjaustanko</h3><p data-i18n="jet.h1t">Riser nostaa ajoasennon pystyyn ja helpottaa hallintaa.</p></div>
+          <div class="jp-slide"><span class="jp-n">02</span><h3 data-i18n="jet.h2">2-up Trixx-istuin</h3><p data-i18n="jet.h2t">Mukava istuin kahdelle, ota kaveri tai kumppani kyytiin.</p></div>
+          <div class="jp-slide"><span class="jp-n">03</span><h3 data-i18n="jet.h3">Rotax 90 hv + iBR</h3><p data-i18n="jet.h3t">Sähköinen jarru ja peruutus tekevät vauhtiin pääsystä turvallista.</p></div>
+          <div class="jp-slide"><span class="jp-n">04</span><h3 data-i18n="jet.h4">Kevyt runko</h3><p data-i18n="jet.h4t">Alle 200 kg kuivapaino tekee jetistä ketterän ja leikkisän.</p></div>
+          <div class="jp-slide jp-slide--specs">
+            <span class="jp-k" data-i18n="jet.specEyebrow">Tekniset tiedot</span>
+            <h3 data-i18n="jet.specTitle">Numerot lyhyesti.</h3>
+            <dl class="specs">
+              <div><dt data-i18n="spec.engine">Moottori</dt><dd>Rotax 900 ACE</dd></div>
+              <div><dt data-i18n="spec.power">Teho</dt><dd data-i18n="spec.powerV">90 hv</dd></div>
+              <div><dt data-i18n="spec.cap">Henkilömäärä</dt><dd data-i18n="spec.capV">max 2 tai 180 kg</dd></div>
+              <div><dt data-i18n="spec.weight">Paino</dt><dd data-i18n="spec.weightV">n. 195 kg</dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="jet__progress" aria-hidden="true">
+          <span class="jet__count"><b id="jetCount">00</b> / 04</span>
+          <span class="jet__bar"><i id="jetBar"></i></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. KALUSTO: ominaisuudet + oikea kuva Helsingistä -->
+    <section class="feats section" id="kalusto">
+      <div class="wrap">
+        <div class="feats__top">
+          <div>
+            <span class="eyebrow reveal" data-i18n="feats.eyebrow">Kalusto</span>
+            <h2 class="h2 reveal" data-i18n-html="feats.title">Vesijetin vuokraus <span class="hl">Helsingissä.</span></h2>
+          </div>
+          <p class="lead reveal" data-i18n="feats.lead">Ensikertalaisystävällinen ja turvallinen vesijetti.</p>
+        </div>
+        <div class="feats__grid">
+          <figure class="feats__photo" id="featsPhoto">
+            <img src="media/riders.jpg" alt="Kaksi ajajaa 82Rentalsin vihreällä Sea-Doo Spark Trixx -vesijetillä Helsingin satamassa" loading="lazy" width="1400" height="1400" />
+            <figcaption><span class="dotlive"></span>Helsinki</figcaption>
+          </figure>
+          <ul class="feats__list">
+            <li class="feat">
+              <span class="feat__ico"><svg viewBox="0 0 24 24" class="ico"><path d="M13 2 4 14h7l-1 8 9-12h-7Z"/></svg></span>
+              <div><h3 data-i18n="feat.1">Kevyt ja leikkisä</h3><p data-i18n="feat.1t">82 km/h huippunopeus, alle 200 kg paino. Enemmän hevosvoimia kuin Volkswagen Polossa.</p></div>
+            </li>
+            <li class="feat">
+              <span class="feat__ico"><svg viewBox="0 0 24 24" class="ico"><path d="M3 17c3 0 3-2 6-2s3 2 6 2 3-2 6-2"/><path d="M8 11c1-4 4-7 9-7-1 3-3 6-6 7"/></svg></span>
+              <div><h3 data-i18n="feat.2">Tehty tempuille</h3><p data-i18n="feat.2t">Säädettävä ohjaustanko ja Trixx-jalkapohjat antavat ajaa pystyssä ja temppuilla helposti.</p></div>
+            </li>
+            <li class="feat">
+              <span class="feat__ico"><svg viewBox="0 0 24 24" class="ico"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="8" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.2c3 .2 5.5 2.6 6 5.8"/></svg></span>
+              <div><h3 data-i18n="feat.3">2 hengen vesijetti</h3><p data-i18n="feat.3t">Mukava 2up istuin, kaveri tai kumppani mahtuu kyytiin.</p></div>
+            </li>
+            <li class="feat">
+              <span class="feat__ico"><svg viewBox="0 0 24 24" class="ico"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></span>
+              <div><h3 data-i18n="feat.4">Täysin turvallinen</h3><p data-i18n="feat.4t">Pelastusliivit, paikannin ja muut turvavarusteet kuuluvat aina hintaan.</p></div>
+            </li>
+            <li class="feats__cta">
+              <p class="feats__quote" data-i18n="feats.quote">Aja sitä, älä vain katso kuvia.</p>
+              <a class="btn" href="https://www.82rentals.com/varaa"><span data-i18n="feats.cta">Varaa tämä vesijetti</span> <span aria-hidden="true">→</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. HINNASTO -->
+    <section class="pricing section" id="hinnasto">
+      <span class="ghost-num ghost-num--light" aria-hidden="true">82</span>
+      <div class="wrap">
+        <div class="pricing__head">
+          <span class="eyebrow eyebrow--light reveal" data-i18n="price.eyebrow">Avajaisalennukset voimassa</span>
+          <h2 class="h2 h2--light reveal" data-i18n-html="price.title">Aja Helsingissä <span class="hl">avajaishintaan.</span></h2>
+          <p class="lead lead--light reveal" data-i18n="price.lead">Avajaiskausi käynnissä. Polttoaine, pelastusliivit ja muut turvavarusteet aina hintaan. Lyhyt perehdytys sisältyy. Lähtö Tervasaaren satamasta, lisämaksulla kuljetus onnistuu minne vain.</p>
+        </div>
+
+        <div class="tiers" id="tiers">
+          <article class="tier">
+            <span class="tier__tag" data-i18n="t1.tag">Nopea kokemus</span>
+            <h3 class="tier__name" data-i18n="t1.name">Pyrähdys</h3>
+            <p class="tier__dur"><span data-i18n="t1.dur">1 tunti</span></p>
+            <p class="tier__desc" data-i18n="t1.desc">Helppo ja nopea irtiotto.</p>
+            <p class="tier__price"><strong data-i18n="t1.now">119 €</strong> <s data-i18n="t1.was">169 €</s> <span data-i18n="price.per">/ vesijetti</span></p>
+            <span class="tier__badge" data-i18n="price.badge">Avajaistarjous</span>
+            <ul class="tier__list">
+              <li data-i18n="price.f1">Pelastusliivit ja muut turvavarusteet</li>
+              <li data-i18n="price.f2">Polttoaine</li>
+              <li data-i18n="price.f3">Lyhyt perehdytys</li>
+              <li data-i18n="price.f4">Kuljetus lisämaksulla</li>
+            </ul>
+            <a class="btn btn--ghost btn--block" href="https://www.82rentals.com/varaa?duration=1h"><span data-i18n="t1.cta">Varaa nopeasti</span> <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="tier tier--hot">
+            <span class="tier__ribbon" data-i18n="t2.tag">Suosituin valinta</span>
+            <span class="tier__tag" data-i18n="t2.kicker">Suosituin valinta</span>
+            <h3 class="tier__name" data-i18n="t2.name">Kesän klassikko</h3>
+            <p class="tier__dur"><span data-i18n="t2.dur">2 tuntia</span></p>
+            <p class="tier__desc" data-i18n="t2.desc">Täydellinen aika nauttia kunnolla. Ei kiirettä, ei stressiä.</p>
+            <p class="tier__price"><strong data-i18n="t2.now">199 €</strong> <s data-i18n="t2.was">259 €</s> <span data-i18n="price.per">/ vesijetti</span></p>
+            <span class="tier__badge" data-i18n="price.badge">Avajaistarjous</span>
+            <ul class="tier__list">
+              <li data-i18n="price.f1">Pelastusliivit ja muut turvavarusteet</li>
+              <li data-i18n="price.f2">Polttoaine</li>
+              <li data-i18n="price.f3">Lyhyt perehdytys</li>
+              <li data-i18n="price.f4">Kuljetus lisämaksulla</li>
+            </ul>
+            <a class="btn btn--block" href="https://www.82rentals.com/varaa?duration=2h"><span data-i18n="t2.cta">Varaa suosituin</span> <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="tier">
+            <span class="tier__tag" data-i18n="t3.tag">Paras arvo</span>
+            <h3 class="tier__name" data-i18n="t3.name">Saaristoseikkailu</h3>
+            <p class="tier__dur"><span data-i18n="t3.dur">3 tuntia</span></p>
+            <p class="tier__desc" data-i18n="t3.desc">Vapautta vesillä ja paras hinta tunnille. Riittävästi aikaa kiertää saaristossa rauhassa.</p>
+            <p class="tier__price"><strong data-i18n="t3.now">249 €</strong> <s data-i18n="t3.was">349 €</s> <span data-i18n="price.per">/ vesijetti</span></p>
+            <span class="tier__badge" data-i18n="price.badge">Avajaistarjous</span>
+            <ul class="tier__list">
+              <li data-i18n="price.f1">Pelastusliivit ja muut turvavarusteet</li>
+              <li data-i18n="price.f2">Polttoaine</li>
+              <li data-i18n="price.f3">Lyhyt perehdytys</li>
+              <li data-i18n="price.f4">Kuljetus lisämaksulla</li>
+            </ul>
+            <a class="btn btn--ghost btn--block" href="https://www.82rentals.com/varaa?duration=3h"><span data-i18n="t3.cta">Valitse paras arvo</span> <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+
+        <div class="notes">
+          <div class="note reveal">
+            <svg viewBox="0 0 24 24" class="ico"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="8" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.2c3 .2 5.5 2.6 6 5.8"/></svg>
+            <div><h3 data-i18n="note.1">Yhdellä vesijetillä matkustaa kaksi</h3><p data-i18n="note.1t">Sinä ja kaveri, kumppani tai sisarus, samalla pelillä. Ei tarvitse varata kahta jos olette kaksin.</p></div>
+          </div>
+          <div class="note reveal">
+            <svg viewBox="0 0 24 24" class="ico"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0Z"/><path d="M17 6h3v2a3 3 0 0 1-3 3M7 6H4v2a3 3 0 0 0 3 3"/></svg>
+            <div><h3 data-i18n="note.2">Pidemmät paketit ja ryhmävaraukset</h3><p data-i18n="note.2t">Polttariporukat, tapahtumat ja koko päivän vuokraukset hoituvat helposti. Laita DM Instaan, sähköpostia tai soita, niin sovitaan kaikki kerralla.</p>
+              <p class="note__links"><a href="tel:+358401866664">+358 40 186 6664</a> · <a href="mailto:asiakaspalvelu@82rentals.com">asiakaspalvelu@82rentals.com</a></p></div>
+          </div>
+        </div>
+
+        <ul class="assure">
+          <li class="reveal"><strong data-i18n="as.1">Maksuton peruutus</strong><span data-i18n="as.1t">Maksutta 48 h ennen vuokra-aikaa.</span></li>
+          <li class="reveal"><strong data-i18n="as.2">Lähtö Tervasaaren satamasta</strong><span data-i18n="as.2t">Yksi vakiopaikka, helppo löytää. Muusta paikasta sovitaan erikseen.</span></li>
+          <li class="reveal"><strong data-i18n="as.3">Joustava ajankohta</strong><span data-i18n="as.3t">Aamusta iltaan, sinun aikataulullasi.</span></li>
+          <li class="reveal"><strong data-i18n="as.4">Yli 16v ajaja ja matkustaja</strong><span data-i18n="as.4t">Sekä ajajan että matkustajan tulee olla vähintään 16-vuotiaita.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SOME -->
     <section class="social section" id="social">
       <span class="ghost-num" aria-hidden="true">82</span>
       <div class="wrap social__grid">
@@ -180,10 +383,103 @@
           <div class="stat"><strong class="teal" data-count="100" data-suffix="%">100%</strong><span data-i18n="stat.3">Huolletut vesijetit</span></div>
           <div class="stat"><strong data-count="60" data-suffix="s">60s</strong><span data-i18n="stat.4">Varaus valmis</span></div>
         </div>
+        <div class="crew">
+          <div class="crew__head">
+            <span class="eyebrow reveal" data-i18n="crew.eyebrow">Tiimi</span>
+            <h3 class="h3 reveal" data-i18n="crew.title">Kolme tyyppiä, kolme vastuualuetta.</h3>
+            <p class="lead reveal" data-i18n="crew.lead">Pidämme tonttirajat selvinä, jokainen meistä vastaa omasta osa-alueestaan. Kun otat yhteyttä, joku oikeasti vastaa.</p>
+          </div>
+          <div class="crew__grid">
+            <article class="person">
+              <span class="person__ini">JL</span>
+              <h4>Joonatan Lindholm</h4>
+              <p class="person__role" data-i18n="crew.r1">Tekniikka &amp; strategia</p>
+              <p data-i18n="crew.b1">Verkkosivut, digimarkkinointi ja strategia ovat Joonatanin pöydällä. Pitää huolen siitä, että varaus sujuu kymmenessä sekunnissa ja että jokainen klikkaus tuntuu siltä miltä pitää.</p>
+            </article>
+            <article class="person">
+              <span class="person__ini">PB</span>
+              <h4>Patrik Blomvall</h4>
+              <p class="person__role" data-i18n="crew.r2">Operatiivinen johto</p>
+              <p data-i18n="crew.b2">Patrik vastaa kalustosta, huolloista, kuljetuksista ja asiakaspalvelusta. Hän on se kasvo, jonka näet kun vesijetti saapuu paikan päälle.</p>
+            </article>
+            <article class="person">
+              <span class="person__ini">VH</span>
+              <h4>Ville Hautamäki</h4>
+              <p class="person__role" data-i18n="crew.r3">Talous &amp; tiimi</p>
+              <p data-i18n="crew.b3">Ville hoitaa talouden, kirjanpidon ja oikeudelliset asiat, sekä pyörittää somemarkkinointia ja tiimin arkea. Pitää koneiston pyörimässä kulissien takana.</p>
+            </article>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- 6. CTA -->
+
+    <!-- UKK -->
+    <section class="faq section" id="ukk">
+      <div class="wrap faq__grid">
+        <div class="faq__side">
+          <span class="eyebrow reveal" data-i18n="faq.eyebrow">UKK</span>
+          <h2 class="h2 reveal" data-i18n-html="faq.title">Hyvät kysymykset, <span class="hl">selkeät vastaukset.</span></h2>
+          <p class="lead reveal" data-i18n="faq.lead">Jos jotain jäi mietityttämään, tästä löydät vastaukset. Etkö löydä omaasi? Laita viestiä.</p>
+        </div>
+        <div class="faq__list">
+          <details class="qa reveal"><summary><span data-i18n="faq.q1">Tarvitsenko ajokortin?</span><i aria-hidden="true"></i></summary><div class="qa__a"><p data-i18n="faq.a1">Et. Sea-Doo Spark Trixx 2up:in ajamiseen Suomessa ei vaadita erillistä vesikulkuneuvokorttia. Sekä ajajan että matkustajan tulee olla vähintään 16-vuotiaita ja tarvitset mukaan voimassa olevan kuvallisen henkilöllisyystodistuksen. Annamme lyhyen perehdytyksen ennen jokaista ajoa.</p></div></details>
+          <details class="qa reveal"><summary><span data-i18n="faq.q2">Onko se turvallista? Entä vakuutus?</span><i aria-hidden="true"></i></summary><div class="qa__a"><p data-i18n="faq.a2">Kyllä. Kaikkiin vuokriin sisältyy kattava vakuutus, pelastusliivit ja turvallisuusnaru. Käymme jokaisen ajajan kanssa läpi turvallisen ajon ja reittivalinnat, ja olemme tavoitettavissa puhelimitse koko ajon ajan.</p></div></details>
+          <details class="qa reveal"><summary><span data-i18n="faq.q3">Mitä jos sää on huono?</span><i aria-hidden="true"></i></summary><div class="qa__a"><p data-i18n="faq.a3">Turvallisuus ensin. Jos olosuhteet ovat vaaralliset (kova tuuli, myrsky, sankka sumu), siirrämme varauksen ilmaiseksi tai palautamme rahat kokonaan. Kevyt sade ei yleensä ole ongelma.</p></div></details>
+          <details class="qa reveal"><summary><span data-i18n="faq.q4">Mikä on peruutusehto?</span><i aria-hidden="true"></i></summary><div class="qa__a"><p data-i18n="faq.a4">Peruutus on maksuton, kun se tehdään viimeistään 48 tuntia ennen vuokra-ajan alkua. Alle 48 h mutta yli 24 h ennen tehdyistä peruutuksista veloitetaan 50 % vuokrahinnasta, ja alle 24 h ennen tehdyistä peruutuksista koko vuokrahinta (100 %). Säävaraukset meidän puoleltamme (turvallisuussyy) ovat aina 100 % palautuskelpoisia tai siirrettävissä uuteen aikaan.</p></div></details>
+          <details class="qa reveal"><summary><span data-i18n="faq.q5">Mistä noudan vesijetin?</span><i aria-hidden="true"></i></summary><div class="qa__a"><p data-i18n="faq.a5">Lähtöpaikka on Tervasaaren satama, ja se sisältyy aina hintaan. Jos haluat että tuomme vesijetin muualle Helsingin alueelle, onnistuu se lisämaksusta sopimuksen mukaan. Soita +358 40 186 6664 tai laita sähköpostia, niin järjestetään.</p></div></details>
+          <details class="qa reveal"><summary><span data-i18n="faq.q6">Voiko kaksi henkilöä ajaa yhdessä?</span><i aria-hidden="true"></i></summary><div class="qa__a"><p data-i18n="faq.a6">Kyllä. Spark Trixx on 2up-malli, eli suunniteltu kahdelle ajajalle. Molempien on käytettävä pelastusliivejä (saat ne meiltä).</p></div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- YHTEYSTIEDOT + LÄHTÖPAIKKA -->
+    <section class="contact section" id="yhteystiedot">
+      <div class="wrap">
+        <span class="eyebrow reveal" data-i18n="ct.eyebrow">Yhteystiedot</span>
+        <h2 class="h2 reveal" data-i18n-html="ct.title">Ollaan <span class="hl">yhteydessä.</span></h2>
+        <p class="lead reveal" data-i18n="ct.lead">Vastaamme yleensä saman päivän aikana. Soita, laita sähköpostia tai DM:ää somessa.</p>
+
+        <div class="contact__grid">
+          <div class="map" id="map">
+            <!-- Oma kuvitus: tyylitelty rantaviiva ja lähtöpiste -->
+            <svg class="map__svg" viewBox="0 0 600 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><pattern id="pDots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="rgba(110,198,255,.18)"/></pattern></defs>
+              <rect width="600" height="460" fill="url(#pDots)"/>
+              <path class="map__land" d="M0 0 H600 V120 C540 130 520 100 470 112 C420 124 430 170 380 176 C330 182 320 140 270 150 C220 160 236 206 190 214 C140 222 120 180 70 190 C40 196 20 220 0 214 Z"/>
+              <path class="map__land" d="M332 238 C352 220 392 222 404 240 C416 258 398 282 372 284 C344 286 316 260 332 238 Z"/>
+              <path class="map__land" d="M470 300 C490 290 520 296 524 316 C528 336 500 346 482 340 C462 334 452 312 470 300 Z"/>
+              <path class="map__land" d="M150 330 C176 316 214 330 210 356 C206 380 168 384 152 370 C138 358 134 340 150 330 Z"/>
+              <path class="map__route" d="M372 252 C330 300 250 300 214 290 C160 276 120 300 110 340 C100 380 170 420 260 410 C360 400 440 380 470 330 C496 290 470 240 420 230" pathLength="1"/>
+              <g transform="translate(372 252)"><circle class="map__pulse" r="12"/><circle r="7" fill="#6ec6ff"/><circle r="3" fill="#041427"/></g>
+              <text class="map__label" x="392" y="262">Tervasaari</text>
+              <text class="map__label map__label--city" x="40" y="80">HELSINKI</text>
+            </svg>
+            <div class="map__card">
+              <span class="eyebrow eyebrow--light" data-i18n="ct.depEyebrow">Lähtöpaikka</span>
+              <h3>Tervasaaren satama</h3>
+              <p class="map__addr">Tervasaari, 00170 Helsinki</p>
+              <p data-i18n="ct.depText">Lähtöpaikka on Tervasaaren satama Helsingissä. Avaa reittiohjeet alta, Google ja Apple Maps ohjaavat suoraan paikalle.</p>
+              <div class="map__btns">
+                <a class="btn btn--sm" href="https://www.google.com/maps/search/?api=1&amp;query=Tervasaaren%20satama%2C%2000170%20Helsinki" target="_blank" rel="noopener"><span data-i18n="ct.google">Avaa Google Maps</span></a>
+                <a class="btn btn--sm btn--ghost" href="https://maps.apple.com/?q=Tervasaaren%20satama%2C%2000170%20Helsinki&amp;ll=60.17143,24.96275" target="_blank" rel="noopener"><span data-i18n="ct.apple">Avaa Apple Maps</span></a>
+              </div>
+            </div>
+          </div>
+
+          <ul class="channels">
+            <li class="reveal"><a href="tel:+358401866664"><span class="ch__k" data-i18n="ct.phone">Puhelin</span><strong>+358 40 186 6664</strong><span class="ch__h" data-i18n="ct.phoneHint">Joka päivä klo 9 alkaen 21 saakka kauden aikana</span></a></li>
+            <li class="reveal"><a href="mailto:asiakaspalvelu@82rentals.com"><span class="ch__k" data-i18n="ct.email">Sähköposti</span><strong>asiakaspalvelu@82rentals.com</strong><span class="ch__h" data-i18n="ct.emailHint">Vastaamme alle 24 tunnissa</span></a></li>
+            <li class="reveal"><a href="https://instagram.com/82rentals" target="_blank" rel="noopener"><span class="ch__k">Instagram</span><strong>@82rentals</strong><span class="ch__h" data-i18n="ct.igHint">DM toimii myös varauksiin</span></a></li>
+            <li class="reveal"><a href="https://www.tiktok.com/@82rentals" target="_blank" rel="noopener"><span class="ch__k">TikTok</span><strong>@82rentals</strong><span class="ch__h" data-i18n="ct.ttHint">Päivitykset ja kaluston esittelyt</span></a></li>
+            <li class="reveal ch--static"><div><span class="ch__k" data-i18n="ct.season">Kausi</span><strong data-i18n="ct.seasonV">Toukokuusta syyskuuhun</strong><span class="ch__h" data-i18n="ct.seasonT">Ajokausi alkaa kun jää lähtee ja kestää syksyyn. Alkukauden ja loppukauden varauksiin voi soveltua erityisehtoja, varmista meiltä.</span></div></li>
+            <li class="reveal ch--static"><div><span class="ch__k" data-i18n="ct.deliv">Tarvitsetko toimituksen muualle?</span><span class="ch__h" data-i18n="ct.delivT">Onnistuu lisämaksusta sopimuksen mukaan. Soita tai laita sähköpostia ennen varausta, niin sovitaan paikka ja hinta.</span></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
     <section class="cta section">
       <div class="wrap">
         <div class="cta__box" id="ctaBox">

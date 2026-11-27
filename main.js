@@ -85,7 +85,7 @@
     gsap.ticker.add(t => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
     $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
-      const t = $(a.getAttribute('href')); if (t) { e.preventDefault(); lenis.scrollTo(t); }
+      const t = $(a.getAttribute('href')); if (t) { e.preventDefault(); lenis.scrollTo(t, { offset: t.id === 'jet' || t.id === 'top' ? 0 : -90 }); }
     }));
   }
 
@@ -109,14 +109,12 @@
     .to('.hero__num', { yPercent: -30, ease: 'none' }, 0)
     .to('.hero__shade', { opacity: 1.0, ease: 'none' }, 0);
 
-  /* ---------- Yleiset paljastukset ---------- */
-  $$('.section, .team').forEach(sec => {
-    const items = $$('.reveal', sec);
-    if (!items.length) return;
-    gsap.from(items, {
-      y: 70, autoAlpha: 0, duration: 1.4, ease: 'expo.out', stagger: 0.1,
-      scrollTrigger: { trigger: items[0], start: 'top 85%' }
-    });
+  /* ---------- Yleiset paljastukset (erä kerrallaan, kun elementti tulee näkyviin) ---------- */
+  ScrollTrigger.config({ ignoreMobileResize: true });
+  gsap.set('.reveal', { y: 70, autoAlpha: 0 });
+  ScrollTrigger.batch('.reveal', {
+    start: 'top 88%', once: true,
+    onEnter: b => gsap.to(b, { y: 0, autoAlpha: 1, duration: 1.4, ease: 'expo.out', stagger: 0.1, overwrite: true })
   });
   $$('.section .hl, .team .hl').forEach(h => {
     gsap.fromTo(h, { '--hl': 0 }, { '--hl': 1, duration: 1.2, ease: 'power3.inOut', delay: 0.5, scrollTrigger: { trigger: h, start: 'top 85%' } });
@@ -130,7 +128,86 @@
   /* ---------- 2. Infonauha liukuu sisään ---------- */
   gsap.from('.ticker', { clipPath: 'inset(0 0 100% 0)', duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: '.ticker', start: 'top 95%' } });
 
-  /* ---------- 3. Puhelin kääntyy esiin ---------- */
+  /* ---------- 3. Laitteisto: piirros → värit → osat 01–04 → tekniset tiedot ---------- */
+  const jetSec = $('#jet');
+  if (jetSec) {
+    const slides = $$('.jp-slide', jetSec);
+    const spots = $$('.hs', jetSec);
+    const countEl = $('#jetCount');
+    const steps = [0, 0.34, 0.47, 0.6, 0.73, 0.86]; // intro, 01, 02, 03, 04, tekniset tiedot
+    let active = -1;
+    gsap.set(slides, { autoAlpha: 0, y: 24 });
+    const setActive = i => {
+      if (i === active) return;
+      const prev = active; active = i;
+      if (prev > -1) gsap.to(slides[prev], { autoAlpha: 0, y: i > prev ? -24 : 24, duration: 0.45, ease: 'power2.in', overwrite: true });
+      gsap.fromTo(slides[i], { autoAlpha: 0, y: i > prev ? 24 : -24 }, { autoAlpha: 1, y: 0, duration: 0.7, delay: prev > -1 ? 0.2 : 0, ease: 'expo.out', overwrite: true });
+      spots.forEach((s, k) => {
+        s.classList.toggle('is-on', k === i - 1);
+        gsap.to(s, { autoAlpha: i >= k + 1 && i <= 4 ? 1 : (i === 5 ? 0.5 : 0), scale: i >= k + 1 ? 1 : 0.4, transformOrigin: 'center', duration: 0.5, ease: 'back.out(2)', overwrite: true });
+      });
+      countEl.textContent = String(Math.min(Math.max(i, 0), 4)).padStart(2, '0');
+    };
+    setActive(0);
+
+    // Kameran kohdepisteet (svg:n suhteelliset koordinaatit) jokaiselle osalle
+    const focus = [[0.618, 0.18], [0.457, 0.378], [0.5, 0.71], [0.716, 0.67]];
+    const small = window.matchMedia('(max-width: 820px)').matches;
+    const z = small ? 1.35 : 1.22;
+    const jt = gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: {
+        trigger: jetSec, pin: true, start: 'top top', anticipatePin: 1,
+        end: () => '+=' + Math.round(window.innerHeight * (small ? 3.4 : 3.8)),
+        scrub: 0.8,
+        onUpdate: self => {
+          const p = self.progress;
+          let i = 0; steps.forEach((t, k) => { if (p >= t) i = k; });
+          setActive(i);
+          gsap.set('#jetBar', { scaleX: p });
+        }
+      }
+    });
+    jt.to('.jet__word', { xPercent: -55, duration: 10 }, 0)
+      .fromTo('.jet__stage', { scale: 0.82, rotate: -3 }, { scale: 1, rotate: 0, duration: 3 }, 0)
+      .to('.jet__svg .jl, .jet__svg .jp', { strokeDashoffset: 0, duration: 1.4, stagger: 0.12 }, 0)
+      .to('.jet__body', { '--fill': 1, duration: 0.9 }, 2.3)
+      .to('.jet__spot', { opacity: 1, duration: 1 }, 2.3)
+      .fromTo('.jet__shine', { attr: { x: -200 } }, { attr: { x: 1100 }, duration: 1.1 }, 2.6)
+      .to('.jet__head', { autoAlpha: small ? 0 : 0.1, y: -30, duration: 0.6 }, 3.2);
+    focus.forEach(([fx, fy], k) => {
+      jt.to('.jet__svg', { scale: z, xPercent: (0.5 - fx) * 100 * (z - 0.6), yPercent: (0.5 - fy) * 100 * (z - 0.7), duration: 1.1, ease: 'power2.inOut' }, 3.5 + k * 1.3);
+    });
+    jt.to('.jet__svg', { scale: 1, xPercent: 0, yPercent: 0, duration: 1.1, ease: 'power2.inOut' }, 8.6)
+      .to('.jet__head', { autoAlpha: 1, y: 0, duration: 0.6 }, 8.8)
+      .to({}, { duration: 0.6 }, 9.7);
+  }
+
+  /* ---------- 4. Kalusto: kuva avautuu ja kortit liukuvat ---------- */
+  gsap.fromTo('#featsPhoto', { '--ci': '10%', '--pz': 1.3 }, { '--ci': '0%', '--pz': 1, ease: 'none',
+    scrollTrigger: { trigger: '#featsPhoto', start: 'top bottom', end: 'top 25%', scrub: true } });
+  gsap.from('.feat', { x: 80, autoAlpha: 0, duration: 1.3, ease: 'expo.out', stagger: 0.12,
+    scrollTrigger: { trigger: '.feats__list', start: 'top 80%' } });
+
+  /* ---------- 5. Hinnasto: kortit levittyvät pakasta ---------- */
+  const mmTiers = gsap.matchMedia();
+  mmTiers.add('(min-width: 1025px)', () => {
+    gsap.fromTo('.tier',
+      { y: 160, rotateY: i => [28, 0, -28][i], rotateX: 12, xPercent: i => [60, 0, -60][i], z: -200, autoAlpha: 0.2 },
+      { y: 0, rotateY: 0, rotateX: 0, xPercent: 0, z: 0, autoAlpha: 1, ease: 'none',
+        scrollTrigger: { trigger: '#tiers', start: 'top bottom', end: 'top 35%', scrub: 1 } });
+  });
+  mmTiers.add('(max-width: 1024px)', () => {
+    gsap.utils.toArray('.tier').forEach(t => gsap.from(t, { y: 90, rotateX: 18, autoAlpha: 0, duration: 1.3, ease: 'expo.out',
+      scrollTrigger: { trigger: t, start: 'top 88%' } }));
+  });
+
+  /* ---------- Tiimi + yhteystiedot ---------- */
+  gsap.from('.person', { y: 70, autoAlpha: 0, duration: 1.3, ease: 'expo.out', stagger: 0.12, scrollTrigger: { trigger: '.crew__grid', start: 'top 85%' } });
+  gsap.fromTo('.map__svg', { scale: 1.25 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '#map', start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.from('.map__card', { y: 60, autoAlpha: 0, duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: '#map', start: 'top 70%' } });
+
+  /* ---------- Puhelin kääntyy esiin ---------- */
   gsap.fromTo('.phone__frame',
     { rotateY: -22, rotateX: 10, rotateZ: -4, y: 140, scale: 0.9 },
     { rotateY: 0, rotateX: 0, rotateZ: 0, y: -30, scale: 1, ease: 'none',
@@ -152,5 +229,13 @@
   /* Footer nousee esiin */
   gsap.from('.footer__grid > *', { y: 50, autoAlpha: 0, stagger: 0.12, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: '.footer', start: 'top 85%' } });
 
+  /* Sivun korkeus muuttuu (arvostelu-widget, fontit, kuvat) → päivitetään laukaisupisteet */
+  let rT;
+  const refresh = () => { clearTimeout(rT); rT = setTimeout(() => ScrollTrigger.refresh(), 250); };
+  if ('ResizeObserver' in window) {
+    let lastH = document.body.scrollHeight;
+    new ResizeObserver(() => { const h = document.body.scrollHeight; if (Math.abs(h - lastH) > 40) { lastH = h; refresh(); } }).observe(document.body);
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
   window.addEventListener('load', () => ScrollTrigger.refresh());
 })();
