@@ -816,3 +816,9 @@ body { background: var(--abyss); }
   .ptag--1 { left: -6%; } .ptag--2 { right: -6%; } .ptag--3 { left: 0; }
   .rating { width: 100%; padding: 18px 20px; }
 }
+
+/* Higgsfield: arvostelujen vedenalainen video ja finaalivideo */
+.reviews { isolation: isolate; }
+.reviews__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; opacity: .45;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent); }
+.reviews .caustics { z-index: -1; }

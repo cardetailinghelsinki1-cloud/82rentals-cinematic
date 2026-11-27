@@ -277,6 +277,13 @@
     .to(rObj, { v: 4.9, ease: 'none', onUpdate: () => { rNum.textContent = rObj.v.toFixed(1).replace('.', (window.I18N[document.documentElement.lang] || {}).decimal || ','); } }, 0)
     .from('#rating', { rotateX: 30, y: 60, autoAlpha: 0.2, transformPerspective: 900, ease: 'none' }, 0);
 
+  const uw = $('.reviews__video');
+  if (uw) ScrollTrigger.create({ trigger: '#reviews', start: 'top 150%', end: 'bottom -50%',
+    onToggle: s => {
+      if (s.isActive) { if (!uw.src) uw.src = uw.dataset.src; const p = uw.play(); if (p && p.catch) p.catch(() => {}); }
+      else uw.pause();
+    } });
+
   /* ---------- 8. Tiimi: kuva avautuu, kortit kääntyvät 3D:nä ---------- */
   const tm = $('#teamMedia');
   gsap.fromTo(tm, { '--inset': '7%', '--round': '36px', '--zoom': 1.3 },
@@ -305,8 +312,11 @@
     scrollTrigger: { trigger: '#map', start: 'top bottom', end: 'top 40%', scrub: true } });
 
   /* ---------- 11. Finaali: kuva avautuu koko ruudulle, otsikko kasvaa ---------- */
+  const finV = $('.finale__video');
+  const setFin = finV ? scrubVideo(finV, '#finale') : () => {};
   const fin = gsap.timeline({ defaults: { ease: 'none' },
     scrollTrigger: { trigger: '#finale', pin: true, start: 'top top', end: '+=130%', scrub: 1, anticipatePin: 1 } });
+  ScrollTrigger.create({ trigger: '#finale', start: 'top bottom', end: () => '+=' + Math.round(window.innerHeight * 2.3), onUpdate: s => setFin(s.progress) });
   fin.fromTo('#finaleMedia', { '--fi': '22%', '--fx': '26%', '--fr': '40px', '--fz': 1.35 }, { '--fi': '0%', '--fx': '0%', '--fr': '0px', '--fz': 1, duration: 1 }, 0)
     .fromTo('.finale__title', { scale: 0.55, autoAlpha: 0.2, letterSpacing: '0.04em' }, { scale: 1, autoAlpha: 1, letterSpacing: '-0.04em', duration: 1 }, 0)
     .from('.finale__copy .eyebrow, .finale__copy .lead, .finale__copy .btn', { y: 50, autoAlpha: 0, stagger: 0.1, duration: 0.4 }, 0.55)
